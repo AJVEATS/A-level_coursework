@@ -22,8 +22,6 @@
     questionOne{
       width: 100%;
       padding: 2px;
-      float: center;
-      text-align: left;
       border-style: solid;
       border-color: dimgray;
       border-radius: 12px;
@@ -31,7 +29,7 @@
     answerA{
       float: left;
       text-align: center;
-      width: 24.25%;
+      width: 25%;
       padding: 2px;
       border-style: solid;
       border-color: dimgray;
@@ -40,7 +38,7 @@
     answerB{
       float: left;
       text-align: center;
-      width: 24.25%;
+      width: 25%;
       padding: 2px;
       border-style: solid;
       border-color: dimgray;
@@ -49,7 +47,7 @@
     answerC{
       float: right;
       text-align: center;
-      width: 24.25%;
+      width: 25%;
       padding: 2px;
       border-style: solid;
       border-color: dimgray;
@@ -58,16 +56,16 @@
     answerD{
       float: right;
       text-align: center;
-      width: 24.25%;
+      width: 25%;
       padding: 2px;
       border-style: solid;
       border-color: dimgray;
       border-radius: 12px;
     }
-    userAnswer{
-      float:none;
+    userAnswerInput{
+      float: center;
       text-align: center;
-      width: 100%;
+      width: 25%;
       padding: 2px;
       border-style: solid;
       border-color: dimgray;
@@ -93,27 +91,34 @@
         <li><a href="index.html">Home</a></li>
         <p><font color="white">A-level Computer Science Coursework</font></p>
     </ul>
-        <websiteDescription>
-              <h1>A-level Computer Science Revision Website</h1>
-        </websiteDescription>
-        <questionOne>
-              <p>This is where the question would be</p>
-        </questionOne>
-        <answerA>
-              <p>Answer A - </p>
-        </answerA>
-        <answerB>
-              <p>Answer B - </p>
-        </answerB>
-        <answerC>
-              <p>Answer C - </p>
-        </answerC>
-        <answerD>
-              <p>Answer D - </p>
-        </answerD>
-        <br></br>
-        <userAnswer>
-              <p>What's your answer to the question?</p>
-        </userAnswer>
+    <websiteDescription>
+        <h1>A-level Computer Science Revision Website</h1>
+    </websiteDescription>
+    <questionOne>
+        <p>This is where the question would be</p>
+    </questionOne>
+    <answerA>
+        <p>Answer A - </p>
+    </answerA>
+    <answerB>
+        <p>Answer B - </p>
+    </answerB>
+    <answerC>
+        <p>Answer C - </p>
+    </answerC>
+    <answerD>
+        <p>Answer D - </p>
+    </answerD>
+    <userAnswerInput>
+        <p>What's your answer to the question?</p>
+        <form id="">
+            <div class="form-group">
+                <label>Your Answer
+                    <input name="userAnswer" class="form-control" required autofocus>
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary">Submit Answer</button>
+        </form>
+    </userAnswerInput>
     </body>
 </html>
