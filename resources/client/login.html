@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <style>
     ul {
@@ -62,7 +61,7 @@
     <script src="/client/js/js.cookie.min.js"></script>
     <script src="/client/js/querystring.js"></script>
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/client/js/admin.js"></script>
+    <script src="/client/js/login.js"></script>
 </head>
 
 <body onload="resetLoginForm()">
@@ -82,7 +81,7 @@
     <div class="row">
         <div class="col text-center p-3">
             <form id="loginForm">
-                <h1 class="h3 mb-3 font-weight-normal text-primary">Log back in</h1>
+                <h1 class="h3 mb-3 font-weight-normal text-primary text-dark">Log back in</h1>
                 <div class="form-group">
                     <label>Username
                         <input name="username" class="form-control" required autofocus>
@@ -93,7 +92,7 @@
                         <input type="password" name="password" class="form-control" required>
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary">Log in</button>
+                <button class="btn btn-lg btn-dark">Log in</button>
             </form>
         </div>
     </div>
@@ -101,7 +100,7 @@
 <newUser>
     <div class="col text-center p-3">
         <form id="newUserForm">
-            <h1 class="h3 mb-3 font-weight-normal text-success">New user</h1>
+            <h1 class="h3 mb-3 font-weight-normal text-success text-dark">New user</h1>
             <div class="form-group">
                 <label>Username
                     <input name="username" class="form-control" required autofocus>
@@ -115,7 +114,7 @@
                     <input type="password" name="password2" class="form-control" required>
                 </label>
             </div>
-            <button class="btn btn-lg btn-success">Create user account</button>
+            <button class="btn btn-lg btn-dark">Create user account</button>
         </form>
     </div>
 </newUser>
