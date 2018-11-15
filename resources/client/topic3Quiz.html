@@ -62,7 +62,7 @@
       border-color: dimgray;
       border-radius: 12px;
     }
-    userAnswer{
+    userAnswerInput{
       float: center;
       text-align: center;
       width: 25%;
@@ -91,28 +91,34 @@
         <li><a href="index.html">Home</a></li>
         <p><font color="white">A-level Computer Science Coursework</font></p>
     </ul>
-
     <websiteDescription>
-      <h1>A-level Computer Science Revision Website</h1>
+        <h1>A-level Computer Science Revision Website</h1>
     </websiteDescription>
     <questionThree>
-      <p>This is where the question would be</p>
+        <p>This is where the question would be</p>
     </questionThree>
     <answerA>
-      <p>Answer A - </p>
+        <p>Answer A - </p>
     </answerA>
     <answerB>
-      <p>Answer B - </p>
+        <p>Answer B - </p>
     </answerB>
     <answerC>
-      <p>Answer C - </p>
+        <p>Answer C - </p>
     </answerC>
     <answerD>
-      <p>Answer D - </p>
-    </answerD>
-        <br></br>
-    <userAnswer>
-      <p>What's your answer to the question?</p>
-    </userAnswer>
+        <p>Answer D - </p>
+    </answerD>  
+    <userAnswerInput>
+        <p>What's your answer to the question?</p>
+        <form id="">
+            <div class="form-group">
+                <label>Your Answer
+                    <input name="userAnswer" class="form-control" required autofocus>
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary">Submit Answer</button>
+        </form>
+    </userAnswerInput>
     </body>
 </html>
