@@ -1,12 +1,16 @@
 package server.models;
-
 import org.json.simple.JSONObject;
+import server.DatabaseConnection;
+import server.Logger;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Login {
-    public static Object login;
-    public static Login[] logins;
+
     private String username;
     private String password;
     private String sessionToken;
@@ -45,7 +49,7 @@ public class Login {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    public static ArrayList<Login> admins = new ArrayList<>();
+    public static ArrayList<Login> logins = new ArrayList<>();
 
     @SuppressWarnings("unchecked")
     public JSONObject toJSON() {

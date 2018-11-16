@@ -1,10 +1,9 @@
 package server.controllers;
-
 import server.Logger;
 import server.models.Login;
-
-import javax.servlet.http.Cookie;
+import server.models.services.LoginService;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.util.UUID;
 
@@ -16,10 +15,10 @@ public class LoginController {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public String attemptLogin(@FormParam("username") String username,
-                               @FormParam("password") String password) {
+                               @FormParam("password") String password ) {
 
         Logger.log("/user/login - Attempt by " + username);
-        org.eclipse.jetty.security.LoginService.selectAllInto(Login.login);
+        LoginService.selectAllInto(Login.logins);
         for (Login a: Login.logins) {
             if (a.getUsername().toLowerCase().equals(username.toLowerCase())) {
                 if (!a.getPassword().equals(password)) {
@@ -27,7 +26,7 @@ public class LoginController {
                 }
                 String token = UUID.randomUUID().toString();
                 a.setSessionToken(token);
-                String success = org.eclipse.jetty.security.LoginService.update(a);
+                String success = LoginService.update(a);
                 if (success.equals("OK")) {
                     return token;
                 } else {
@@ -37,12 +36,13 @@ public class LoginController {
         }
         return "Error: Can't find user account.";
     }
+
     @GET
     @Path("check")
     @Produces(MediaType.TEXT_PLAIN)
     public String checkLogin(@CookieParam("sessionToken") Cookie sessionCookie) {
 
-        Logger.log("/admin/check - Checking user against database");
+        Logger.log("/login/check - Checking user against database");
 
         String currentUser = validateSessionCookie(sessionCookie);
 
@@ -53,12 +53,14 @@ public class LoginController {
             return currentUser;
         }
     }
-    private static String validateSessionCookie(Cookie sessionCookie) {
+
+
+    public static String validateSessionCookie(Cookie sessionCookie) {
         if (sessionCookie != null) {
             String token = sessionCookie.getValue();
-            String result = org.eclipse.jetty.security.LoginService.selectAllInto(Login.admins);
+            String result = LoginService.selectAllInto(Login.logins);
             if (result.equals("OK")) {
-                for (Login a : Login.admins) {
+                for (Login a : Login.logins) {
                     if (a.getSessionToken().equals(token)) {
                         Logger.log("Valid session token received.");
                         return a.getUsername();
@@ -68,4 +70,6 @@ public class LoginController {
         }
         return null;
     }
+
+}
 
