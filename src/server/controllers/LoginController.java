@@ -1,7 +1,7 @@
 package server.controllers;
 
 import server.Logger;
-import server.models.LoginService;
+import server.models.Login;
 
 import javax.servlet.http.Cookie;
 import javax.ws.rs.*;
@@ -19,8 +19,8 @@ public class LoginController {
                                @FormParam("password") String password) {
 
         Logger.log("/user/login - Attempt by " + username);
-        org.eclipse.jetty.security.LoginService.selectAllInto(LoginService.login);
-        for (LoginService a: LoginService.logins) {
+        org.eclipse.jetty.security.LoginService.selectAllInto(Login.login);
+        for (Login a: Login.logins) {
             if (a.getUsername().toLowerCase().equals(username.toLowerCase())) {
                 if (!a.getPassword().equals(password)) {
                     return "Error: Incorrect password";
@@ -56,9 +56,9 @@ public class LoginController {
     private static String validateSessionCookie(Cookie sessionCookie) {
         if (sessionCookie != null) {
             String token = sessionCookie.getValue();
-            String result = org.eclipse.jetty.security.LoginService.selectAllInto(LoginService.admins);
+            String result = org.eclipse.jetty.security.LoginService.selectAllInto(Login.admins);
             if (result.equals("OK")) {
-                for (LoginService a : LoginService.admins) {
+                for (Login a : Login.admins) {
                     if (a.getSessionToken().equals(token)) {
                         Logger.log("Valid session token received.");
                         return a.getUsername();

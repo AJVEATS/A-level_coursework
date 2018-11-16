@@ -2,6 +2,7 @@ package server.models.services;
 
 import server.Logger;
 import server.DatabaseConnection;
+import server.models.Login;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class LoginService {
-    public static String selectAllInto(List<server.models.LoginService> targetList) {
+    public static String selectAllInto(List<Login> targetList) {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -19,7 +20,7 @@ public class LoginService {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new server.models.LoginService(results.getString("Username"), results.getString("Password"), results.getString("SessionToken")));
+                        targetList.add(new Login(results.getString("Username"), results.getString("Password"), results.getString("SessionToken")));
 
 
                     }
@@ -34,8 +35,8 @@ public class LoginService {
         return "OK";
     }
 
-    public static server.models.LoginService selectById(int id) {
-        server.models.LoginService result = null;
+    public static Login selectById(int id) {
+        Login result = null;
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
                     "SELECT Username, Password, SessionToken FROM Admins WHERE Username = ?"
@@ -44,7 +45,7 @@ public class LoginService {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new server.models.LoginService(results.getString("Username"), results.getString("Password"), results.getString("SessionToken"));
+                    result = new Login(results.getString("Username"), results.getString("Password"), results.getString("SessionToken"));
 
 
                 }
@@ -57,7 +58,7 @@ public class LoginService {
         return result;
     }
 
-    public static String update(server.models.LoginService itemToSave) {
+    public static String update(Login itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
                     "UPDATE Admins SET Password = ?, SessionToken = ? WHERE Username = ?"

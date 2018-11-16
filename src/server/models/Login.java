@@ -4,16 +4,16 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
-public class LoginService {
+public class Login {
     public static Object login;
-    public static LoginService[] logins;
+    public static Login[] logins;
     private String username;
     private String password;
     private String sessionToken;
 
     // Get IntelliJ to auto-generate a constructor, getter and setters here:
 
-    public LoginService(String username, String password, String sessionToken) {
+    public Login(String username, String password, String sessionToken) {
         this.username = username;
         this.password = password;
         this.sessionToken = sessionToken;
@@ -45,7 +45,7 @@ public class LoginService {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    public static ArrayList<LoginService> admins = new ArrayList<>();
+    public static ArrayList<Login> admins = new ArrayList<>();
 
     @SuppressWarnings("unchecked")
     public JSONObject toJSON() {
