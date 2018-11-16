@@ -10,6 +10,8 @@ public class ServerStart {
 
     public static void main(String[] args) {
 
+        DatabaseConnection.open("websiteDatabase.db");
+
         ResourceConfig config = new ResourceConfig();
         config.packages("server");
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
