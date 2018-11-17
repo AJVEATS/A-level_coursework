@@ -1,16 +1,12 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.User;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 public class UserService {
-
     public static String selectAllInto(List<User> targetList) {
         targetList.clear();
         try {
@@ -22,8 +18,6 @@ public class UserService {
                 if (results != null) {
                     while (results.next()) {
                         targetList.add(new User(results.getInt("UserId"), results.getString("UserName"), results.getString("Password")));
-
-
                     }
                 }
             }
@@ -35,7 +29,6 @@ public class UserService {
         }
         return "OK";
     }
-
     public static User selectById(int id) {
         User result = null;
         try {
@@ -58,7 +51,6 @@ public class UserService {
         }
         return result;
     }
-
     public static String insert(User itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -67,13 +59,6 @@ public class UserService {
             statement.setInt(1, itemToSave.getUserId());
             statement.setString(2, itemToSave.getUserName());
             statement.setString(3, itemToSave.getPassword());
-
-
-
-
-
-
-
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
@@ -83,7 +68,6 @@ public class UserService {
             return error;
         }
     }
-
     public static String update(User itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -91,24 +75,15 @@ public class UserService {
             );
             statement.setString(1, itemToSave.getUserName());
             statement.setString(2, itemToSave.getPassword());
-
-
-
-
-
-
-
             statement.setInt(3, itemToSave.getUserId());
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't update 'User' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
     }
-
     public static String deleteById(int id) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -119,10 +94,8 @@ public class UserService {
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't delete by id from 'User' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
     }
-
 }

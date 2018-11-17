@@ -6,16 +6,14 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.util.UUID;
-
 @Path("login/")
-public class LoginController {
+public class UserController {
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public String attemptLogin(@FormParam("username") String username,
                                @FormParam("password") String password ) {
-
         Logger.log("/user/users - Attempt by " + username);
         UserService.selectAllInto(User.users);
         for (User a: User.users) {
@@ -39,9 +37,7 @@ public class LoginController {
     @Path("check")
     @Produces(MediaType.TEXT_PLAIN)
     public String checkLogin(@CookieParam("sessionToken") Cookie sessionCookie) {
-
         Logger.log("/User/check - Checking user against database");
-
         String currentUser = validateSessionCookie(sessionCookie);
 
         if (currentUser == null) {
@@ -51,8 +47,6 @@ public class LoginController {
             return currentUser;
         }
     }
-
-
     public static String validateSessionCookie(Cookie sessionCookie) {
         if (sessionCookie != null) {
             String token = sessionCookie.getValue();

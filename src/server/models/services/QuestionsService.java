@@ -1,16 +1,12 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Questions;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 public class QuestionsService {
-
     public static String selectAllInto(List<Questions> targetList) {
         targetList.clear();
         try {
@@ -22,20 +18,16 @@ public class QuestionsService {
                 if (results != null) {
                     while (results.next()) {
                         targetList.add(new Questions(results.getInt("QuestionId"), results.getInt("TopicId"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("Question"), results.getString("AnswerCorrect")));
-
-
                     }
                 }
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select all from 'Questions' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
         return "OK";
     }
-
     public static Questions selectById(int id) {
         Questions result = null;
         try {
@@ -47,18 +39,14 @@ public class QuestionsService {
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
                     result = new Questions(results.getInt("QuestionId"), results.getInt("TopicId"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("Question"), results.getString("AnswerCorrect"));
-
-
                 }
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select by id from 'Questions' table: " + resultsException.getMessage();
-
             Logger.log(error);
         }
         return result;
     }
-
     public static String insert(Questions itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -72,18 +60,14 @@ public class QuestionsService {
             statement.setString(6, itemToSave.getAnswerD());
             statement.setString(7, itemToSave.getQuestion());
             statement.setString(8, itemToSave.getAnswerCorrect());
-
-
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't insert into 'Questions' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
     }
-
     public static String update(Questions itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -96,19 +80,15 @@ public class QuestionsService {
             statement.setString(5, itemToSave.getAnswerD());
             statement.setString(6, itemToSave.getQuestion());
             statement.setString(7, itemToSave.getAnswerCorrect());
-
-
             statement.setInt(8, itemToSave.getQuestionId());
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't update 'Questions' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
     }
-
     public static String deleteById(int id) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -119,7 +99,6 @@ public class QuestionsService {
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't delete by id from 'Questions' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }

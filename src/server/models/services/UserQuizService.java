@@ -1,16 +1,13 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.UserQuiz;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserQuizService {
-
     public static String selectAllInto(List<UserQuiz> targetList) {
         targetList.clear();
         try {
@@ -35,7 +32,6 @@ public class UserQuizService {
         }
         return "OK";
     }
-
     public static UserQuiz selectById(int id) {
         UserQuiz result = null;
         try {
@@ -58,7 +54,6 @@ public class UserQuizService {
         }
         return result;
     }
-
     public static String insert(UserQuiz itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -83,7 +78,6 @@ public class UserQuizService {
             return error;
         }
     }
-
     public static String update(UserQuiz itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -108,7 +102,6 @@ public class UserQuizService {
             return error;
         }
     }
-
     public static String deleteById(int id) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
