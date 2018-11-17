@@ -60,13 +60,6 @@ public class User {
         j.put("userId", getUserId());
         j.put("userName", getUserName());
         j.put("password", getPassword());
-
-
-
-
-
-
-
         return j;
     }
 
