@@ -69,4 +69,15 @@ public class User {
 
         return j;
     }
+
+    public void setSessionToken(String token) {
+    }
+
+    public String getUsername() {
+        return null;
+    }
+
+    public Object getSessionToken() {
+        return null;
+    }
 }

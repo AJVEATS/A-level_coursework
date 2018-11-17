@@ -1,7 +1,7 @@
 package server.controllers;
 import server.Logger;
-import server.models.Login;
-import server.models.services.LoginService;
+import server.models.User;
+import server.models.services.UserService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Path("login/")
 public class LoginController {
-
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -17,16 +16,16 @@ public class LoginController {
     public String attemptLogin(@FormParam("username") String username,
                                @FormParam("password") String password ) {
 
-        Logger.log("/user/login - Attempt by " + username);
-        LoginService.selectAllInto(Login.logins);
-        for (Login a: Login.logins) {
+        Logger.log("/user/users - Attempt by " + username);
+        UserService.selectAllInto(User.users);
+        for (User a: User.users) {
             if (a.getUsername().toLowerCase().equals(username.toLowerCase())) {
                 if (!a.getPassword().equals(password)) {
                     return "Error: Incorrect password";
                 }
                 String token = UUID.randomUUID().toString();
                 a.setSessionToken(token);
-                String success = LoginService.update(a);
+                String success = UserService.update(a);
                 if (success.equals("OK")) {
                     return token;
                 } else {
@@ -36,13 +35,12 @@ public class LoginController {
         }
         return "Error: Can't find user account.";
     }
-
     @GET
     @Path("check")
     @Produces(MediaType.TEXT_PLAIN)
     public String checkLogin(@CookieParam("sessionToken") Cookie sessionCookie) {
 
-        Logger.log("/login/check - Checking user against database");
+        Logger.log("/User/check - Checking user against database");
 
         String currentUser = validateSessionCookie(sessionCookie);
 
@@ -58,9 +56,9 @@ public class LoginController {
     public static String validateSessionCookie(Cookie sessionCookie) {
         if (sessionCookie != null) {
             String token = sessionCookie.getValue();
-            String result = LoginService.selectAllInto(Login.logins);
+            String result = UserService.selectAllInto(User.users);
             if (result.equals("OK")) {
-                for (Login a : Login.logins) {
+                for (User a : User.users) {
                     if (a.getSessionToken().equals(token)) {
                         Logger.log("Valid session token received.");
                         return a.getUsername();
