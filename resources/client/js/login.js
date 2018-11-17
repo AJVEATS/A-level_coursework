@@ -21,18 +21,15 @@ function checkLogin() {
         }
     }
 }
-
 function resetLoginForm() {
-
     if (Cookies.get("destination") === undefined) {
         window.location.href = "/client/index.html";
     }
-
     const loginForm = $('#loginForm');
     loginForm.submit(event => {
         event.preventDefault();
         $.ajax({
-            url: '/login/login',
+            url: '/user/user',
             type: 'POST',
             data: loginForm.serialize(),
             success: response => {

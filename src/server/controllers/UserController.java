@@ -6,10 +6,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.util.UUID;
-@Path("login/")
+@Path("user/")
 public class UserController {
     @POST
-    @Path("login")
+    @Path("user")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public String attemptLogin(@FormParam("username") String username,
