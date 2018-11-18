@@ -6,7 +6,7 @@ public class DatabaseConnection {
 
     private static Connection connection = null;
 
-    public static void open(String dbFile)
+    static void open(String dbFile)
     {
         try
         {
@@ -43,4 +43,3 @@ public class DatabaseConnection {
     }
 
 }
-
