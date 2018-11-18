@@ -39,7 +39,6 @@ public class UserController {
     public String checkLogin(@CookieParam("sessionToken") Cookie sessionCookie) {
         Logger.log("/User/check - Checking user against database");
         String currentUser = validateSessionCookie(sessionCookie);
-
         if (currentUser == null) {
             Logger.log("Error: Invalid user session token");
             return "";

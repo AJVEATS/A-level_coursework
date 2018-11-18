@@ -1,8 +1,6 @@
 function checkLogin() {
-
     let currentPage = window.location.pathname;
     let token = Cookies.get("sessionToken");
-
     if (token !== undefined) {
         $.ajax({
             url: '/login/check',
@@ -23,7 +21,7 @@ function checkLogin() {
 }
 function resetLoginForm() {
     if (Cookies.get("destination") === undefined) {
-        window.location.href = "/client/index.html";
+        window.location.href = "/client/login.html";
     }
     const loginForm = $('#loginForm');
     loginForm.submit(event => {
