@@ -9,8 +9,8 @@ function AnswerCheck(){
         userScore = userAnswer + 1
     }
 }
-function GenerateUserScorePecentage(){
-    userScorePercentage = userScore * 10;
+function GenerateUserScorePercentage(){
+    let userScorePercentage = userScore * 10;
 }
 resetLoginForm()
 resetNewUserForm()
