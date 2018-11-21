@@ -1,6 +1,4 @@
 package server.controllers;
-
-
 public class QuizController {
     public int userScore = 0;
     public String AnswerCheck(){
