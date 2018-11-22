@@ -7,9 +7,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.UUID;
 import static server.Console.log;
 @Path("user/")
-
 public class UserController {
-
     @POST
     @Path("new")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -42,12 +40,9 @@ public class UserController {
     @Produces(MediaType.TEXT_PLAIN)
     public String newMessage(@FormParam("username") String username,
                              @FormParam("password") String password ) {
-
         log("/user/login - Attempt by " + username);
-
         UserService.selectAllInto(User.users);
         System.out.println(User.users.size());
-
         for (User u: User.users) {
             if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
                 if (!u.getUserPassword().equals(password)) {
@@ -65,8 +60,6 @@ public class UserController {
         }
         return "Error: Can't find user account.";
     }
-
-
     @GET
     @Path("get")
     @Produces(MediaType.TEXT_PLAIN)
@@ -78,5 +71,4 @@ public class UserController {
             return currentUser;
         }
     }
-
 }

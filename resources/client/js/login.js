@@ -1,8 +1,4 @@
-
-
-
-
-    function postUserLogin() {
+ function postUserLogin() {
         console.log("Invoked postUserLogin() ");
         const loginForm = $('#loginForm');
         $.ajax({
@@ -19,11 +15,6 @@
             }
         });
     }
-
-
-
-
-
 function resetNewUserForm() {
     const newUserForm = $('#newUserForm');
     newUserForm.submit(event => {
@@ -43,7 +34,6 @@ function resetNewUserForm() {
         });
     });
 }
-
 function pageLoad() {
 
 }
