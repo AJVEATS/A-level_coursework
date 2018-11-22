@@ -1,22 +1,28 @@
-function resetLoginForm() {
-    const loginForm = $('#loginForm');
-    loginForm.submit(event => {
-        event.preventDefault();
+
+
+
+
+    function postUserLogin() {
+        console.log("Invoked postUserLogin() ");
+        const loginForm = $('#loginForm');
         $.ajax({
-            url: '/user/login',
             type: 'POST',
+            url: '/user/login',
             data: loginForm.serialize(),
             success: response => {
-                if (response.startsWith('Error:')) {
+                if (response.toString().startsWith('Error:')) {
                     alert(response);
                 } else {
                     Cookies.set("sessionToken", response);
-                    window.location.href = "/client/index.html";
+                    window.open("welcome.html", "_self");
                 }
             }
         });
-    });
-}
+    }
+
+
+
+
 
 function resetNewUserForm() {
     const newUserForm = $('#newUserForm');
@@ -39,6 +45,5 @@ function resetNewUserForm() {
 }
 
 function pageLoad() {
-    resetLoginForm();
-    resetNewUserForm();
+
 }

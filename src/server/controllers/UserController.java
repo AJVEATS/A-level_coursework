@@ -7,7 +7,9 @@ import javax.ws.rs.core.MediaType;
 import java.util.UUID;
 import static server.Console.log;
 @Path("user/")
+
 public class UserController {
+
     @POST
     @Path("new")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -18,7 +20,7 @@ public class UserController {
         log("/user/new - Creating " + username);
         UserService.selectAllInto(User.users);
         for (User u: User.users) {
-            if (u.getUsername().toLowerCase().equals(username.toLowerCase())) {
+            if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
                 return "Error: Username already exists";
             }
         }
@@ -40,11 +42,14 @@ public class UserController {
     @Produces(MediaType.TEXT_PLAIN)
     public String newMessage(@FormParam("username") String username,
                              @FormParam("password") String password ) {
+
         log("/user/login - Attempt by " + username);
+
         UserService.selectAllInto(User.users);
+
         for (User u: User.users) {
-            if (u.getUsername().toLowerCase().equals(username.toLowerCase())) {
-                if (!u.getPassword().equals(password)) {
+            if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
+                if (!u.getUserPassword().equals(password)) {
                     return "Error: Incorrect password";
                 }
                 String token = UUID.randomUUID().toString();
@@ -59,6 +64,8 @@ public class UserController {
         }
         return "Error: Can't find user account.";
     }
+
+
     @GET
     @Path("get")
     @Produces(MediaType.TEXT_PLAIN)
