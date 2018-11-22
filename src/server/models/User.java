@@ -2,11 +2,14 @@ package server.models;
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 public class User {
+
     private int userId;
     private String userName;
     private String userPassword;
     private String sessionToken;
-    public static ArrayList<User> userArrayList =new ArrayList<>();
+
+
+
     public User(int userId, String userName, String userPassword, int sessionToken) {
     }
     public User(int userId, String username, String password1, String token) {
@@ -37,6 +40,7 @@ public class User {
         this.sessionToken = sessionToken;
     }
     public static ArrayList<User> users = new ArrayList<>();
+
     public static int nextId() {
         int id = 0;
         for (User u: users) {

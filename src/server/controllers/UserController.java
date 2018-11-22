@@ -46,6 +46,7 @@ public class UserController {
         log("/user/login - Attempt by " + username);
 
         UserService.selectAllInto(User.users);
+        System.out.println(User.users.size());
 
         for (User u: User.users) {
             if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
