@@ -2,6 +2,8 @@ package server.models.services;
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Quiz;
+
+import javax.ws.rs.core.Cookie;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,5 +96,9 @@ public class QuizService {
             Logger.log(error);
             return error;
         }
+    }
+
+    public static Character validateSessionCookie(Cookie sessionCookie) {
+        return null;
     }
 }
