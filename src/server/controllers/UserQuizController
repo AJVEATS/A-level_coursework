@@ -1,0 +1,12 @@
+package server.controllers;
+import server.models.UserQuiz;
+import server.models.services.UserQuizService;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.MediaType;
+import java.util.UUID;
+import static server.Console.log;
+@Path("userQuiz/")
+
+public class UserQuizController {
+}
