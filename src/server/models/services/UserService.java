@@ -25,6 +25,7 @@ public class UserService {
         } catch (SQLException resultsException) {
             String error = "Database error - can't select all from 'USERS' table: " + resultsException.getMessage();
             Logger.log(error);
+            Logger.log(null);
             return error;
         }
         return "OK";
