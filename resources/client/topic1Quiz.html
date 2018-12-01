@@ -19,7 +19,7 @@
     li a:hover {
         background-color: #111;
     }
-    questionOne{
+    questionAndAnswers{
         float: left;
         text-align: left;
         width: 100%;
@@ -28,15 +28,6 @@
         border-style: solid;
         border-color: dimgray;
         border-radius: 12px;
-    }
-    answers{
-      float: left;
-      text-align: left;
-      width: 100%;
-      height: 200px;
-      padding: 2px;
-      border-style: none;
-      border-radius: 12px;
     }
     userAnswerInput{
         float: left;
@@ -52,17 +43,7 @@
         text-align: center;
         width: 50%;
         height: 190px;
-        padding: 20px;
-        border-style: solid;
-        border-color: dimgray;
-        border-radius: 12px;
-    }
-    userScorePercentage{
-        float: right;
-        text-align: center;
-        width: 50%;
-        height: 190px;
-        padding: 20px;
+        padding-top: 20px;
         border-style: solid;
         border-color: dimgray;
         border-radius: 12px;
@@ -87,15 +68,15 @@
         <li><a href="index.html">Home</a></li>
         <p><font color="white">A-level Computer Science Coursework</font></p>
     </ul>
-    <questionOne>
+    <questionAndAnswers>
         <h1>Question</h1>
-    </questionOne>
-    <answers>
+    </questionAndAnswers>
+    <questionAndAnswers>
         <h2>Answer A - </h2>
         <h2>Answer B - </h2>
         <h2>Answer C - </h2>
         <h2>Answer D - </h2>
-    </answers>
+    </questionAndAnswers>
     <userAnswerInput>
         <p>What's your answer to the question?</p>
         <form id="">
@@ -109,11 +90,11 @@
     </userAnswerInput>
     <userScore>
         <p>Score:</p>
-        <p>0/10</p>
+        <p>/10</p>
     </userScore>
-    <userScorePercentage>
+    <userScore>
         <p>Score:</p>
-        <p>00%</p>
-    </userScorePercentage>
+        <p>%</p>
+    </userScore>
     </body>
 </html>
