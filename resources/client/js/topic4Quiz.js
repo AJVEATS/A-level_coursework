@@ -1,39 +1,31 @@
 var userAnswer = document.getElementById("userAnswer").value;
-var answerCorrect = a;
-var userScore = 0;
-var questionNumber = 0
 function pageLoad() {
+    $.ajax({
+        url: '/quiz/quizzes',
+        type: 'GET',
+        success: questionList => {
+            let quizHTML = `<div class ="container">`
+                + `<div class="row mb-2 "`
+                + `<div class="col-2 bg-light font-weight-bold">one</div>`
+                + `<div class="col-2 bg-light font-weight-bold">two</div>`
+                + `<div class="col-2 bg-light font-weight-bold">three</div>`
+                + `<div class="col-2 bg-light font-weight-bold">four</div>`
+                + `<div class="col-2 bg-light font-weight-bold">five</div>`
+                + `<div class="col-2 bg-light font-weight-bold">six</div>`
+                + `</div>`;
 
-}
-function nextQuestion(){
-    while (questionNumber <= 9 && questionNumber >= 0){
-
-    }
-}
-function AnswerWrong(){
-    userScore == userScore + 1
-    nextQuestion()
-    window.alert("That is the correct answer. The correct answer is" + answerCorrect)
-}
-function AnswerCorrect(){
-    userScore == userScore + 1
-    nextQuestion()
-    window.alert("That is the correct answer.")
-}
-function AnswerCheck(){
-    if(userAnswer.toLowerCase() == answerCorrect ){
-        AnswerCorrect()
-    }else{
-        AnswerWrong()
-    }
-}
-function GenerateUserScorePercentage(){
-    if( userScore > 0){
-        var userScorePercentage = ((userScore*10)+"%")
-    }else{
-        return "0%"
-    }
-}
-function updateUserScore(){
-
+            for(let quiz of questionList){
+                quizHTML += `<div class="row mb-2">`
+                    + `<div class="col-2">${quiz.one}</div>`
+                    + `<div class="col-2">${quiz.two}</div>`
+                    + `<div class="col-2">${quiz.three}</div>`
+                    + `<div class="col-2">${quiz.four}</div>`
+                    + `<div class="col-2">${quiz.five}</div>`
+                    + `<div class="col-2">${quiz.six}</div>`
+                    + `</div>`
+            }
+            quiz.html += `</div>`;
+            $('#quiz').html(quizHTML);
+        }
+    });
 }
