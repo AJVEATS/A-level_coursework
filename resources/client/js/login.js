@@ -10,7 +10,7 @@
                     alert(response);
                 } else {
                     Cookies.set("sessionToken", response);
-                    window.open("welcome.html", "_self");
+                    window.open("index.html", "_self");
                 }
             }
         });
@@ -34,6 +34,30 @@ function resetNewUserForm() {
         });
     });
 }
+ function checkLogin() {
+
+     let currentPage = window.location.pathname;
+     let token = Cookies.get("sessionToken");
+
+     if (token !== undefined) {
+         $.ajax({
+             url: '/user/check',
+             type: 'GET',
+             success: username => {
+                 if (username === "") {
+                     if (currentPage !== '/user/login.html') {
+                         window.location.href = '/user/login.html';
+                     }
+                 }
+             }
+         });
+     } else {
+         if (currentPage !== '/user/login.html') {
+             window.location.href = '/user/login.html';
+         }
+     }
+ }
+
 function pageLoad() {
 
 }
