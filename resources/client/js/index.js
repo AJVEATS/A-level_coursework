@@ -1,3 +1,3 @@
 function pageLoad() {
-
+    var test;
 }
