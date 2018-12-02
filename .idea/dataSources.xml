@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="websiteDatabase.db" uuid="f85da901-e587-442e-8ab6-bdc4762432ab">
+    <data-source source="LOCAL" name="websiteDatabase.db" uuid="cf0d60eb-a7a2-4aa6-83d8-06f527262f71">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/resources/websiteDatabase.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\ajvea\IdeaProjects\CourseWork\resources\websiteDatabase.db</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

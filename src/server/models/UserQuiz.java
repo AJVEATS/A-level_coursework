@@ -6,14 +6,15 @@ import java.util.ArrayList;
 
 public class UserQuiz {
     private int userId;
+    private String userName;
     private int score;
-    private float scorePercentage;
-    private int dateCompleted;
-    public UserQuiz(int userId, int score, float scorePercentage, int dateCompleted) {
+    private int topicCompleted;
+
+    public UserQuiz(int userId, String userName, int score, int topicCompleted) {
         this.userId = userId;
+        this.userName = userName;
         this.score = score;
-        this.scorePercentage = scorePercentage;
-        this.dateCompleted = dateCompleted;
+        this.topicCompleted = topicCompleted;
     }
     public int getUserId() {
         return userId;
@@ -21,28 +22,28 @@ public class UserQuiz {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
     public int getScore() {
         return score;
     }
     public void setScore(int score) {
         this.score = score;
     }
-    public float getScorePercentage() {
-        return scorePercentage;
+    public int getTopicCompleted() {
+        return topicCompleted;
     }
-    public void setScorePercentage(float scorePercentage) {
-        this.scorePercentage = scorePercentage;
+    public void setTopicCompleted(int topicCompleted) {
+        this.topicCompleted = topicCompleted;
     }
-    public int getDateCompleted() {
-        return dateCompleted;
-    }
-    public void setDateCompleted(int dateCompleted) {
-        this.dateCompleted = dateCompleted;
-    }
-    public static ArrayList<UserQuiz> userquizzes = new ArrayList<>();
+    public static ArrayList<UserQuiz> userquizs = new ArrayList<>();
     public static int nextId() {
         int id = 0;
-        for (UserQuiz u: userquizzes) {
+        for (UserQuiz u: userquizs) {
             if (u.getUserId() > id) {
                 id = u.getUserId();
             }
@@ -53,9 +54,9 @@ public class UserQuiz {
     public JSONObject toJSON() {
         JSONObject j = new JSONObject();
         j.put("userId", getUserId());
+        j.put("userName", getUserName());
         j.put("score", getScore());
-        j.put("scorePercentage", getScorePercentage());
-        j.put("dateCompleted", getDateCompleted());
+        j.put("topicCompleted", getTopicCompleted());
         return j;
     }
 }
