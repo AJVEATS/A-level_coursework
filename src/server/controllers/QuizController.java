@@ -1,16 +1,13 @@
 package server.controllers;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.Logger;
 import server.models.Quiz;
 import server.models.services.QuizService;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 @Path("quiz/")
 public class QuizController {
     @GET
