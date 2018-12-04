@@ -6,12 +6,12 @@ function pageLoad() {
         success: questionList => {
             let quizHTML = `<div class ="container">`
                 + `<div class="row mb-2 "`
-                + `<div class="col-2 bg-light font-weight-bold">one</div>`
-                + `<div class="col-2 bg-light font-weight-bold">two</div>`
-                + `<div class="col-2 bg-light font-weight-bold">three</div>`
-                + `<div class="col-2 bg-light font-weight-bold">four</div>`
-                + `<div class="col-2 bg-light font-weight-bold">five</div>`
-                + `<div class="col-2 bg-light font-weight-bold">six</div>`
+                + `<div class="col-2 bg-dark font-weight-bold">one</div>`
+                + `<div class="col-2 bg-dark font-weight-bold">two</div>`
+                + `<div class="col-2 bg-dark font-weight-bold">three</div>`
+                + `<div class="col-2 bg-dark font-weight-bold">four</div>`
+                + `<div class="col-2 bg-dark font-weight-bold">five</div>`
+                + `<div class="col-2 bg-dark font-weight-bold">six</div>`
                 + `</div>`;
 
             for(let quiz of questionList){
