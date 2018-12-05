@@ -1,5 +1,4 @@
 package server;
-
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -19,7 +18,6 @@ public class ServerStart {
         Server server = new Server(8081);
         ServletContextHandler context = new ServletContextHandler(server, "/*");
         context.addServlet(servlet, "/*");
-
         try {
             server.start();
             Logger.log("Server successfully started!");
