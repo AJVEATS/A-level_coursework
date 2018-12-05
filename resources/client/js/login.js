@@ -1,4 +1,5 @@
- function postUserLogin() {
+function pageLoad() {
+    function postUserLogin() {
         console.log("Invoked postUserLogin() ");
         const loginForm = $('#loginForm');
         $.ajax({
@@ -15,49 +16,45 @@
             }
         });
     }
-function resetNewUserForm() {
-    const newUserForm = $('#newUserForm');
-    newUserForm.submit(event => {
-        event.preventDefault();
-        $.ajax({
-            url: '/user/new',
-            type: 'POST',
-            data: newUserForm.serialize(),
-            success: response => {
-                if (response.startsWith('Error:')) {
-                    alert(response);
-                } else {
-                    Cookies.set("sessionToken", response);
-                    window.location.href = "/client/index.html";
+    function resetNewUserForm() {
+        const newUserForm = $('#newUserForm');
+        newUserForm.submit(event => {
+            event.preventDefault();
+            $.ajax({
+                url: '/user/new',
+                type: 'POST',
+                data: newUserForm.serialize(),
+                success: response => {
+                    if (response.startsWith('Error:')) {
+                        alert(response);
+                    } else {
+                        Cookies.set("sessionToken", response);
+                      window.location.href = "/client/index.html";
+                    }
                 }
-            }
-        });
-    });
-}
- function checkLogin() {
-
-     let currentPage = window.location.pathname;
-     let token = Cookies.get("sessionToken");
-
-     if (token !== undefined) {
-         $.ajax({
-             url: '/user/check',
-             type: 'GET',
-             success: username => {
-                 if (username === "") {
-                     if (currentPage !== '/user/login.html') {
-                         window.location.href = '/user/login.html';
-                     }
-                 }
-             }
          });
-     } else {
-         if (currentPage !== '/user/login.html') {
-             window.location.href = '/user/login.html';
-         }
-     }
- }
+      });
+    }
+    function checkLogin() {
+        let currentPage = window.location.pathname;
+        let token = Cookies.get("sessionToken");
 
-function pageLoad() {
-
+        if (token !== undefined) {
+            $.ajax({
+                url: '/user/check',
+                type: 'GET',
+                success: username => {
+                    if (username === "") {
+                        if (currentPage !== '/user/login.html') {
+                            window.location.href = '/user/login.html';
+                        }
+                    }
+                }
+            });
+        } else {
+            if (currentPage !== '/user/login.html') {
+                window.location.href = '/user/login.html';
+            }
+        }
+    }
 }
