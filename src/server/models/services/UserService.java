@@ -18,7 +18,7 @@ public class UserService {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new User(results.getInt("UserId"), results.getString("UserName"), results.getString("UserPassword"), results.getInt("SessionToken")));
+                        targetList.add(new User(results.getInt("UserId"), results.getString("UserName"), results.getString("UserPassword"), results.getString("SessionToken")));
                     }
                 }
             }
@@ -40,7 +40,7 @@ public class UserService {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new User(results.getInt("UserId"), results.getString("UserName"), results.getString("UserPassword"), results.getInt("SessionToken"));
+                    result = new User(results.getInt("UserId"), results.getString("UserName"), results.getString("UserPassword"), results.getString("SessionToken"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -57,7 +57,7 @@ public class UserService {
             statement.setInt(1, itemToSave.getUserId());
             statement.setString(2, itemToSave.getUserName());
             statement.setString(3, itemToSave.getUserPassword());
-            statement.setInt(4, itemToSave.getSessionToken());
+            statement.setString(4, itemToSave.getSessionToken());
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
@@ -73,7 +73,7 @@ public class UserService {
             );
             statement.setString(1, itemToSave.getUserName());
             statement.setString(2, itemToSave.getUserPassword());
-            statement.setInt(3, itemToSave.getSessionToken());
+            statement.setString(3, itemToSave.getSessionToken());
             statement.setInt(4, itemToSave.getUserId());
             statement.executeUpdate();
             return "OK";
