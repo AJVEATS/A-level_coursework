@@ -58,71 +58,10 @@
     <script src="/client/js/bootstrap.min.js"></script>
     <script src="/client/js/js.cookie.min.js"></script>
     <script src="/client/js/querystring.js"></script>
+    <script src="/client/js/login.js"></script>
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-        function postUserLogin() {
-            const loginForm = $('#loginForm');
-            $.ajax({
-                type: 'POST',
-                url: '/user/login',
-                data: loginForm.serialize(),
-                success: response => {
-                    if (response.toString().startsWith('Error:')) {
-                        alert(response);
-                    } else {
-                        Cookies.set("sessionToken", response);
-                        window.open("index.html", "_self");
-                    }
-                }
-            });
-        }
-
-        function checkLogin() {
-            let currentPage = window.location.pathname;
-            let token = Cookies.get("sessionToken");
-
-            if (token !== undefined) {
-                $.ajax({
-                    url: '/user/check',
-                    type: 'GET',
-                    success: username => {
-                        if (username === "") {
-                            if (currentPage !== '/user/login.html') {
-                                window.location.href = '/user/login.html';
-                            }
-                        }
-                    }
-                });
-            } else {
-                if (currentPage !== '/user/login.html') {
-                    window.location.href = '/user/login.html';
-                }
-            }
-        }
-    </script>
-    <script>
-        function resetNewUserForm() {
-            const newUserForm = $('#newUserForm');
-            newUserForm.submit(event => {
-                event.preventDefault();
-                $.ajax({
-                    url: '/user/new',
-                    type: 'POST',
-                    data: newUserForm.serialize(),
-                    success: response => {
-                        if (response.startsWith('Error:')) {
-                            alert(response);
-                        } else {
-                            Cookies.set("sessionToken", response);
-                            window.location.href = "/client/index.html";
-                        }
-                    }
-                });
-            });
-        }
-    </script>
 </head>
-<body>
+<body onload="pageLoad()">
 <ul>
     <li><a class="active" href="login.html">Logout</a></li>
     <li><a href="topicSelection.html">Topics</a></li>
@@ -149,7 +88,7 @@
                     </label>
                 </div>
             </form>
-            <button class="btn btn-lg btn-dark" onclick='postUserLogin();checkLogin()'>Login</button>
+            <button class="btn btn-lg btn-dark" onclick='postUserLogin(); checkLogin()'>Login</button>
         </div>
     </div>
 </login>

@@ -1,60 +1,60 @@
 function pageLoad() {
-    function postUserLogin() {
-        console.log("Invoked postUserLogin() ");
-        const loginForm = $('#loginForm');
+
+}
+function postUserLogin() {
+    console.log("Invoked postUserLogin() ");
+    const loginForm = $('#loginForm');
+    $.ajax({
+        type: 'POST',
+        url: '/user/login',
+        data: loginForm.serialize(),
+        success: response => {
+            if (response.toString().startsWith('Error:')) {
+                alert(response);
+            } else {
+                Cookies.set("sessionToken", response);
+                window.open("index.html", "_self");
+            }
+        }
+    });
+}
+function resetNewUserForm() {
+    const newUserForm = $('#newUserForm');
+    newUserForm.submit(event => {
+        event.preventDefault();
         $.ajax({
+            url: '/user/new',
             type: 'POST',
-            url: '/user/login',
-            data: loginForm.serialize(),
+            data: newUserForm.serialize(),
             success: response => {
-                if (response.toString().startsWith('Error:')) {
+                if (response.startsWith('Error:')) {
                     alert(response);
                 } else {
                     Cookies.set("sessionToken", response);
-                    window.open("index.html", "_self");
+                    window.location.href = "/client/index.html";
                 }
             }
         });
-    }
-    function resetNewUserForm() {
-        const newUserForm = $('#newUserForm');
-        newUserForm.submit(event => {
-            event.preventDefault();
-            $.ajax({
-                url: '/user/new',
-                type: 'POST',
-                data: newUserForm.serialize(),
-                success: response => {
-                    if (response.startsWith('Error:')) {
-                        alert(response);
-                    } else {
-                        Cookies.set("sessionToken", response);
-                      window.location.href = "/client/index.html";
+    });
+}
+function checkLogin() {
+    let currentPage = window.location.pathname;
+    let token = Cookies.get("sessionToken");
+    if (token !== undefined) {
+        $.ajax({
+            url: '/user/check',
+            type: 'GET',
+            success: username => {
+                if (username === "") {
+                    if (currentPage !== '/user/login.html') {
+                        window.location.href = '/user/login.html';
                     }
                 }
-         });
-      });
-    }
-    function checkLogin() {
-        let currentPage = window.location.pathname;
-        let token = Cookies.get("sessionToken");
-
-        if (token !== undefined) {
-            $.ajax({
-                url: '/user/check',
-                type: 'GET',
-                success: username => {
-                    if (username === "") {
-                        if (currentPage !== '/user/login.html') {
-                            window.location.href = '/user/login.html';
-                        }
-                    }
-                }
-            });
-        } else {
-            if (currentPage !== '/user/login.html') {
-                window.location.href = '/user/login.html';
             }
+        });
+    } else {
+        if (currentPage !== '/user/login.html') {
+            window.location.href = '/user/login.html';
         }
     }
 }
