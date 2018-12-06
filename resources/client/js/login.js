@@ -46,15 +46,15 @@ function checkLogin() {
             type: 'GET',
             success: username => {
                 if (username === "") {
-                    if (currentPage !== '/user/login.html') {
-                        window.location.href = '/user/login.html';
+                    if (currentPage !== 'http://localhost:8081/client/profileOverview.html') {
+                        window.location.href = 'http://localhost:8081/client/profileOverview.html';
                     }
                 }
             }
         });
     } else {
-        if (currentPage !== '/user/login.html') {
-            window.location.href = '/user/login.html';
+        if (currentPage !== 'http://localhost:8081/client/profileOverview.html') {
+            window.location.href = 'http://localhost:8081/client/profileOverview.html';
         }
     }
 }
