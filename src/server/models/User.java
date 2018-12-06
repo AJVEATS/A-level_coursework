@@ -6,10 +6,14 @@ public class User {
     private String userName;
     private String userPassword;
     private String sessionToken;
-    public User(int userId, String userName, String userPassword, int sessionToken) {
+
+    public User(int userId, String userName, String userPassword, String sessionToken) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.sessionToken = sessionToken;
     }
-    public User(int userId, String username, String password1, String token) {
-    }
+
     public int getUserId() {
         return userId;
     }
@@ -28,9 +32,8 @@ public class User {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
-    public int getSessionToken() {
-        return Integer.parseInt(sessionToken);
-    }
+    public String getSessionToken() { return sessionToken; }
+
     public void setSessionToken(String sessionToken) {
         this.sessionToken = sessionToken;
     }
