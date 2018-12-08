@@ -14,7 +14,7 @@ public class QuizController {
     @Path("questions")
     @Produces(MediaType.APPLICATION_JSON)
     public String listQuestions(){
-        Logger.log("/quiz/questions - Getting all things from the database");
+        Logger.log("/quiz/questions - Getting all questions from the database");
         String status = QuizService.selectAllInto(Quiz.quizzes);
         if( status.equals("OK")){
             JSONArray questionsList = new JSONArray();
@@ -27,6 +27,19 @@ public class QuizController {
             System.out.println("An error occurred!" + status);
             return "";
         }
+    }
+    @GET
+    @Path("answers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String listAnswers(){
+        Logger.log("/quiz/questions - Getting all the answers from the database");
+        String status = QuizService.selectAllInto(Quiz.quizzes);
+        if ( status.equals("OK")){
+        }else{
+            System.out.println("An error has occurred" + status);
+            return "";
+        }
+        return status;
     }
 }
 
