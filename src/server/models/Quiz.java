@@ -5,57 +5,69 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Quiz {
-    private int topicId;
-    private int questionId;
-    private String answerCorrect;
-    private int score;
-    public Quiz(int topicId, int questionId, String answerCorrect, int score) {
-        this.topicId = topicId;
-        this.questionId = questionId;
-        this.answerCorrect = answerCorrect;
-        this.score = score;
+    private int quizId;
+    private String quizDescription;
+    private String dateCreated;
+    private String topic;
+
+    public Quiz(int quizId, String quizDescription, String dateCreated, String topic) {
+        this.quizId = quizId;
+        this.quizDescription = quizDescription;
+        this.dateCreated = dateCreated;
+        this.topic = topic;
     }
-    public int getTopicId() {
-        return topicId;
+
+    public int getQuizId() {
+        return quizId;
     }
-    public void setTopicId(int topicId) {
-        this.topicId = topicId;
+
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
     }
-    public int getQuestionId() {
-        return questionId;
+
+    public String getQuizDescription() {
+        return quizDescription;
     }
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+
+    public void setQuizDescription(String quizDescription) {
+        this.quizDescription = quizDescription;
     }
-    public String getAnswerCorrect() {
-        return answerCorrect;
+
+    public String getDateCreated() {
+        return dateCreated;
     }
-    public void setAnswerCorrect(String answerCorrect) {
-        this.answerCorrect = answerCorrect;
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
-    public int getScore() {
-        return score;
+
+    public String getTopic() {
+        return topic;
     }
-    public void setScore(int score) {
-        this.score = score;
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
-    public static ArrayList<Quiz> quizzes = new ArrayList<>();
+
+    public static ArrayList<Quiz> quizes = new ArrayList<>();
+
     public static int nextId() {
         int id = 0;
-        for (Quiz q: quizzes) {
-            if (q.getTopicId() > id) {
-                id = q.getTopicId();
+        for (Quiz q: quizes) {
+            if (q.getQuizId() > id) {
+                id = q.getQuizId();
             }
         }
         return id + 1;
     }
+
     @SuppressWarnings("unchecked")
     public JSONObject toJSON() {
         JSONObject j = new JSONObject();
-        j.put("topicId", getTopicId());
-        j.put("questionId", getQuestionId());
-        j.put("answerCorrect", getAnswerCorrect());
-        j.put("score", getScore());
+        j.put("quizId", getQuizId());
+        j.put("quizDescription", getQuizDescription());
+        j.put("dateCreated", getDateCreated());
+        j.put("topic", getTopic());
         return j;
     }
 }

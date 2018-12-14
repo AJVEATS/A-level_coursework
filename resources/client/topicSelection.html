@@ -3,7 +3,7 @@
 <head>
     <title>topicSelection</title>
     <style>
-        topic{
+        topic {
             float: left;
             width: 25%;
             text-align: center;
@@ -11,9 +11,10 @@
             border-style: solid;
             border-color: dimgray;
             border-radius: 12px;
-            height: 825px;
+            height: 500px;
 
         }
+
         ul {
             list-style-type: none;
             margin: 0;
@@ -21,6 +22,7 @@
             overflow: hidden;
             background-color: #333;
         }
+
         li a {
             display: block;
             color: white;
@@ -29,6 +31,7 @@
             text-decoration: none;
             float: right;
         }
+
         li a:hover {
             background-color: #111;
         }
@@ -40,8 +43,52 @@
     <script src="/client/js/js.cookie.min.js"></script>
     <script src="/client/js/querystring.js"></script>
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        function pageLoad() {
+            getQuizList();
+        }
+
+
+        function getQuizList() {
+            console.log("Invoked getQuizList() ");
+
+            $.ajax({
+                type: "GET",
+                url: "/quiz/list",
+                success: response => {
+                    if (response.toString().startsWith('Error:')) {
+                        alert(response);
+                    } else {
+                        formatQuizList(response);
+                    }
+                }
+            });
+        }
+
+        function formatQuizList(data) {
+            console.log(data);
+            let dataHTML = '<tr><td>Quiz Description</td>' +
+                '<td>Date Created</td>' +
+                '<td>Topic</td> + < /tr>';
+            for (let item of data) {
+                dataHTML += `<tr><td>${item.quizDescription}</td>` +
+                    `<td>${item.dateCreated}</td>` +
+                    `<td>${item.topic}</td>` +
+                    `<td>  <button class="trackQuiz btn btn-primary"  data-quizID="${item.quizId}" >Do Quiz</button> </td></tr>`;
+            }
+            $('#quizList').html(dataHTML);
+            $(".trackQuiz").click(event => {
+
+                const quizId = $(event.target).attr('data-quizId');  //from the click event, get the quizID
+                sessionStorage.setItem("quizId", quizId);
+                window.open("quiz.html", "_self");
+            });
+        }
+    </script>
 </head>
-<body onload="pageLoad()">
+
+<body onload="pageLoad();">
 <ul>
     <li><a class="active" href="login.html">Logout</a></li>
     <li><a href="topicSelection.html">Topics</a></li>
@@ -49,39 +96,45 @@
     <li><a href="index.html">Home</a></li>
     <p><font color="white">A-level Computer Science Coursework</font></p>
 </ul>
-    <topic>
-        <h1>Topic 1</h1>
-        <h2>Procedural Fundamentals</h2>
-        <p>In this topic you will learn about the basic programming constructs: iteration; branching and sequence.
+<topic>
+    <h1>Topic 1</h1>
+    <h2>Procedural Fundamentals</h2>
+    <p>In this topic you will learn about the basic programming constructs: iteration; branching and sequence.
         You will also learn about the data types to store your variables: boolean, integer, string, float point
-            and char. This is the topic that will help you to gain an understanding on programming fundamentals.</p>
-        <button><a class="btn btn-lg btn-dark" href="topic1.html">Topic One</a></button>
-    </topic>
-    <topic>
-        <h1>Topic 2</h1>
-        <h2>Binary and Hex Numbers</h2>
-        <p>In this topic you will learn how to convert numbers from denary to binary and hexadecimal.
-            You will also learn hot to write different versions of binary Two's complement and sign
-            and magnitude, which will allow negative numbers to represented. </p>
-        <button><a class="btn btn-lg btn-dark" href="topic2.html">Topic Two</a></button>
-    </topic>
-    <topic>
-        <h1>Topic 3</h1>
-        <h2>Types of Networks</h2>
-        <p></p>
-        <p>In this topic you will learn about different types of networks. You will also learn about different
+        and char. This is the topic that will help you to gain an understanding on programming fundamentals.</p>
+    <button><a class="btn btn-lg btn-dark" href="topic1.html">Topic One</a></button>
+</topic>
+<topic>
+    <h1>Topic 2</h1>
+    <h2>Binary and Hex Numbers</h2>
+    <p>In this topic you will learn how to convert numbers from denary to binary and hexadecimal.
+        You will also learn how to write different versions of binary Two's complement and sign
+        and magnitude, which will allow negative numbers to represented. </p>
+    <button><a class="btn btn-lg btn-dark" href="topic2.html">Topic Two</a></button>
+</topic>
+<topic>
+    <h1>Topic 3</h1>
+    <h2>Types of Networks</h2>
+    <p></p>
+    <p>In this topic you will learn about different types of networks. You will also learn about different
         network topologies which is how a network is laid out and how the devices are arranged. You will also
         learn in this topic the difference between a standard and a protocol.</p>
-        <button><a class="btn btn-lg btn-dark" href="topic3.html">Topic three</a></button>
-    </topic>
-    <topic>
-        <h1>Topic 4</h1>
-        <h2>Devices and Storage</h2>
-        <p></p>
-        <p>In this topic you will learn what an input and output device is and what the difference between them
+    <button><a class="btn btn-lg btn-dark" href="topic3.html">Topic three</a></button>
+</topic>
+<topic>
+    <h1>Topic 4</h1>
+    <h2>Devices and Storage</h2>
+    <p></p>
+    <p>In this topic you will learn what an input and output device is and what the difference between them
         is. You will also learn about the different types of storage devices like optical, magnetic and solid state.
         It will also tell you the different standards that there are for the different types of storage.</p>
-        <button><a class="btn btn-lg btn-dark" href="topic4.html">Topic Four</a></button>
-    </topic>
+    <button><a class="btn btn-lg btn-dark" href="topic4.html">Topic Four</a></button>
+
+
+
+</topic>
+
+<div id="quizList"></div>
+
 </body>
 </html>

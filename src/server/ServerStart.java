@@ -9,7 +9,7 @@ public class ServerStart {
 
     public static void main(String[] args) {
 
-        DatabaseConnection.open("websiteDatabase.db");
+        DatabaseConnection.open("Quiz.db");
 
         ResourceConfig config = new ResourceConfig();
         config.packages("server");
