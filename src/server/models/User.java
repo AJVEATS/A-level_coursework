@@ -4,13 +4,13 @@ import java.util.ArrayList;
 public class User {
     private int userId;
     private String userName;
-    private String userPassword;
+    private String Password;
     private String sessionToken;
 
     public User(int userId, String userName, String userPassword, String sessionToken) {
         this.userId = userId;
         this.userName = userName;
-        this.userPassword = userPassword;
+        this.Password = userPassword;
         this.sessionToken = sessionToken;
     }
 
@@ -26,11 +26,11 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return Password;
     }
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setPassword(String userPassword) {
+        this.Password = userPassword;
     }
     public String getSessionToken() { return sessionToken; }
 
@@ -52,7 +52,7 @@ public class User {
         JSONObject j = new JSONObject();
         j.put("userId", getUserId());
         j.put("userName", getUserName());
-        j.put("userPassword", getUserPassword());
+        j.put("userPassword", getPassword());
         j.put("sessionToken", getSessionToken());
         return j;
     }

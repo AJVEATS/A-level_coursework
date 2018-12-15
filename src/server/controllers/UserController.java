@@ -45,7 +45,7 @@ public class UserController {
         System.out.println(User.users.size());
         for (User u: User.users) {
             if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
-                if (!u.getUserPassword().equals(password)) {
+                if (!u.getPassword().equals(password)) {
                     return "Error: Incorrect password";
                 }
                 String token = UUID.randomUUID().toString();

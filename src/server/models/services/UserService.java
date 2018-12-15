@@ -12,13 +12,13 @@ public class UserService {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT UserId, UserName, UserPassword, SessionToken FROM USERS"
+                    "SELECT UserId, UserName, Password, SessionToken FROM USERS"
             );
             if (statement != null) {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new User(results.getInt("UserId"), results.getString("UserName"), results.getString("UserPassword"), results.getString("SessionToken")));
+                        targetList.add(new User(results.getInt("UserId"), results.getString("UserName"), results.getString("Password"), results.getString("SessionToken")));
                     }
                 }
             }
@@ -34,13 +34,13 @@ public class UserService {
         User result = null;
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT UserId, UserName, UserPassword, SessionToken FROM USERS WHERE UserId = ?"
+                    "SELECT UserId, UserName, Password, SessionToken FROM USERS WHERE UserId = ?"
             );
             if (statement != null) {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new User(results.getInt("UserId"), results.getString("UserName"), results.getString("UserPassword"), results.getString("SessionToken"));
+                    result = new User(results.getInt("UserId"), results.getString("UserName"), results.getString("Password"), results.getString("SessionToken"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -52,11 +52,11 @@ public class UserService {
     public static String insert(User itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "INSERT INTO USERS (UserId, UserName, UserPassword, SessionToken) VALUES (?, ?, ?, ?)"
+                    "INSERT INTO USERS (UserId, UserName, Password, SessionToken) VALUES (?, ?, ?, ?)"
             );
             statement.setInt(1, itemToSave.getUserId());
             statement.setString(2, itemToSave.getUserName());
-            statement.setString(3, itemToSave.getUserPassword());
+            statement.setString(3, itemToSave.getPassword());
             statement.setString(4, itemToSave.getSessionToken());
             statement.executeUpdate();
             return "OK";
@@ -69,10 +69,10 @@ public class UserService {
     public static String update(User itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "UPDATE USERS SET UserName = ?, UserPassword = ?, SessionToken = ? WHERE UserId = ?"
+                    "UPDATE USERS SET UserName = ?, Password = ?, SessionToken = ? WHERE UserId = ?"
             );
             statement.setString(1, itemToSave.getUserName());
-            statement.setString(2, itemToSave.getUserPassword());
+            statement.setString(2, itemToSave.getPassword());
             statement.setString(3, itemToSave.getSessionToken());
             statement.setInt(4, itemToSave.getUserId());
             statement.executeUpdate();
