@@ -4,6 +4,7 @@
     <title>topicSelection</title>
     <style>
         .topicTitle{
+
            font-color: dimgray;
             font-size: larger;
         }
@@ -72,12 +73,12 @@
 
         function formatTopicList(data) {
             console.log(data);
-            let dataHTML = `<div class = "row">`;
+            let dataHTML ="";
             for (let item of data) {
-                dataHTML += `<div class = "col" class="topicTitle"> ${item.topic} <br>`+
-                    `${item.topicDescription}  <button class="goToTopic btn btn-primary" data-topic="${item.topic}"  >TOPIC</button></div>`;
+                dataHTML += `<div class="topic"><span class="topicTitle"> ${item.topic}</span> <br>`+
+                    `${item.topicDescription}  <button class="goToTopic btn btn-primary" data-topic="${item.topic}"  >Go to Quizzes</button></div>`;
             }
-            $('#topicList').html(dataHTML + "</div>");
+            $('#topicList').html(dataHTML);
 
             $(".goToTopic").click(event => {
                 const topic = $(event.target).attr('data-topic');  //from the click event, get the topic
