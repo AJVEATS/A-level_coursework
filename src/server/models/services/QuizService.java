@@ -15,13 +15,15 @@ public class QuizService {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT QuizID, QuizDescription, DateCreated, Topic FROM Quizes"
+                    "SELECT QuizId, QuizDescription, DateCreated, TopicAnswerCorrect FROM Quizes"
             );
             if (statement != null) {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Quiz(results.getInt("QuizID"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic")));
+                        targetList.add(new Quiz(results.getInt("QuizId"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic")));
+
+
                     }
                 }
             }
@@ -38,13 +40,15 @@ public class QuizService {
         Quiz result = null;
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT QuizID, QuizDescription, DateCreated, Topic FROM Quizes WHERE QuizID = ?"
+                    "SELECT QuizId, QuizDescription, DateCreated, TopicAnswerCorrect FROM Quizes WHERE QuizId = ?"
             );
             if (statement != null) {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new Quiz(results.getInt("QuizID"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic"));
+                    result = new Quiz(results.getInt("QuizId"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic"));
+
+
                 }
             }
         } catch (SQLException resultsException) {
@@ -58,7 +62,7 @@ public class QuizService {
     public static String insert(Quiz itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "INSERT INTO Quizes (QuizID, QuizDescription, DateCreated, Topic) VALUES (?, ?, ?, ?)"
+                    "INSERT INTO Quizes (QuizId, QuizDescription, DateCreated, TopicAnswerCorrect) VALUES (?, ?, ?, ?)"
             );
             statement.setInt(1, itemToSave.getQuizId());
             statement.setString(2, itemToSave.getQuizDescription());
@@ -77,12 +81,12 @@ public class QuizService {
     public static String update(Quiz itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "UPDATE Quizes SET QuizDescription = ?, DateCreated = ?, Topic = ? WHERE QuizID = ?"
+                    "UPDATE Quizes SET QuizDescription = ?, DateCreated = ?, Topic = ? WHERE QuizId = ?"
             );
             statement.setString(1, itemToSave.getQuizDescription());
             statement.setString(2, itemToSave.getDateCreated());
             statement.setString(3, itemToSave.getTopic());
-            statement.setInt(4, itemToSave.getQuizId());
+            statement.setInt(5, itemToSave.getQuizId());
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
@@ -96,7 +100,7 @@ public class QuizService {
     public static String deleteById(int id) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "DELETE FROM Quizes WHERE QuizID = ?"
+                    "DELETE FROM Quizes WHERE QuizId = ?"
             );
             statement.setInt(1, id);
             statement.executeUpdate();
