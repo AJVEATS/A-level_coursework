@@ -1,5 +1,4 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.UserQuiz;

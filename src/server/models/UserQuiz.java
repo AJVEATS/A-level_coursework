@@ -1,7 +1,5 @@
 package server.models;
-
 import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 
 public class UserQuiz {

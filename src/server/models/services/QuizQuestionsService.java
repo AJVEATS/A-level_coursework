@@ -93,7 +93,6 @@ public class QuizQuestionsService {
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't delete by id from 'QuizQuestions' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }

@@ -1,9 +1,7 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Scores;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

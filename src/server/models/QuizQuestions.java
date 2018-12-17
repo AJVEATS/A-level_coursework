@@ -1,7 +1,5 @@
 package server.models;
-
 import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 
 public class QuizQuestions {
@@ -46,14 +44,6 @@ public class QuizQuestions {
         JSONObject j = new JSONObject();
         j.put("quizId", getQuizId());
         j.put("questionId", getQuestionId());
-
-
-
-
-
-
-
-
         return j;
     }
 }

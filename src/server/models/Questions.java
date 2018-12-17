@@ -1,7 +1,5 @@
 package server.models;
-
 import org.json.simple.JSONObject;
-
 import java.util.ArrayList;
 
 public class Questions {
@@ -112,8 +110,6 @@ public class Questions {
         j.put("answerC", getAnswerC());
         j.put("answerD", getAnswerD());
         j.put("answerCorrect", getAnswerCorrect());
-
-
         return j;
     }
 }

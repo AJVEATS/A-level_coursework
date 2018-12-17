@@ -1,5 +1,4 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Quiz;
@@ -22,8 +21,6 @@ public class QuizService {
                 if (results != null) {
                     while (results.next()) {
                         targetList.add(new Quiz(results.getInt("QuizId"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic")));
-
-
                     }
                 }
             }
@@ -47,13 +44,10 @@ public class QuizService {
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
                     result = new Quiz(results.getInt("QuizId"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic"));
-
-
                 }
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select by id from 'Quizes' table: " + resultsException.getMessage();
-
             Logger.log(error);
         }
         return result;
