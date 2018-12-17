@@ -47,11 +47,11 @@ public class Quiz {
         this.topic = topic;
     }
 
-    public static ArrayList<Quiz> quizs = new ArrayList<>();
+    public static ArrayList<Quiz> quizzes = new ArrayList<>();
 
     public static int nextId() {
         int id = 0;
-        for (Quiz q: quizs) {
+        for (Quiz q: quizzes) {
             if (q.getQuizId() > id) {
                 id = q.getQuizId();
             }

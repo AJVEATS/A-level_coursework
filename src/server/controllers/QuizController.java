@@ -16,17 +16,17 @@ import javax.ws.rs.core.MediaType;
 public class QuizController {
 
     @GET
-    @Path("list")
+    @Path("byTopic")
     @Produces(MediaType.APPLICATION_JSON)
-    public String quizList() {
+    public String quizByTopic(Sess xxxxxxx  ) {
 
-        Logger.log("/quiz/list - Getting list of quizes from database");
+        Logger.log("/quiz/byTopic - Getting list of quizzes by topic from database");
 
-        String status = QuizService.selectAllInto(Quiz.quizes);
+        String status = QuizService.selectAllInto(Quiz.quizzes, topic);
 
         if (status.equals("OK")) {
             JSONArray quizJSONArray = new JSONArray();
-            for (Quiz q : Quiz.quizes) {
+            for (Quiz q : Quiz.quizzes) {
                 quizJSONArray.add(q.toJSON());
             }
             Logger.log(quizJSONArray.toString());
@@ -40,15 +40,16 @@ public class QuizController {
     }
 
 
+
     @GET
     @Path("questions")
     @Produces(MediaType.APPLICATION_JSON)
     public String listQuestions() {
         Logger.log("/quiz/questions - Getting all questions from the database");
-        String status = QuizService.selectAllInto(Quiz.quizes);
+        String status = QuizService.selectAllInto(Quiz.quizzes);
         if (status.equals("OK")) {
             JSONArray questionsList = new JSONArray();
-            for (Quiz c : Quiz.quizes) {
+            for (Quiz c : Quiz.quizzes) {
                 JSONObject jc = c.toJSON();
                 questionsList.add(jc);
             }
@@ -64,7 +65,7 @@ public class QuizController {
     @Produces(MediaType.APPLICATION_JSON)
     public String listAnswers() {
         Logger.log("/quiz/questions - Getting all the answers from the database");
-        String status = QuizService.selectAllInto(Quiz.quizes);
+        String status = QuizService.selectAllInto(Quiz.quizzes);
         if (status.equals("OK")) {
         } else {
             System.out.println("An error has occurred" + status);

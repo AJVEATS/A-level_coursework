@@ -14,7 +14,7 @@ public class QuizService {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT QuizId, QuizDescription, DateCreated, TopicAnswerCorrect FROM Quizes"
+                    "SELECT QuizId, QuizDescription, DateCreated, Topic FROM Quizzes"
             );
             if (statement != null) {
                 ResultSet results = statement.executeQuery();
@@ -25,7 +25,29 @@ public class QuizService {
                 }
             }
         } catch (SQLException resultsException) {
-            String error = "Database error - can't select all from 'Quizes' table: " + resultsException.getMessage();
+            String error = "Database error - can't select all from 'Quizzes' table: " + resultsException.getMessage();
+
+            Logger.log(error);
+            return error;
+        }
+        return "OK";
+    }
+    public static String selectByTopic(List<Quiz> targetList, String topic) {
+        targetList.clear();
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement(
+                    "SELECT QuizId, QuizDescription, DateCreated, Topic FROM Quizzes Where Topic = ?"
+            );
+            if (statement != null) {
+                ResultSet results = statement.executeQuery();
+                if (results != null) {
+                    while (results.next()) {
+                        targetList.add(new Quiz(results.getInt("QuizId"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic")));
+                    }
+                }
+            }
+        } catch (SQLException resultsException) {
+            String error = "Database error - can't select all from 'Quizzes' table: " + resultsException.getMessage();
 
             Logger.log(error);
             return error;
@@ -33,78 +55,6 @@ public class QuizService {
         return "OK";
     }
 
-    public static Quiz selectById(int id) {
-        Quiz result = null;
-        try {
-            PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT QuizId, QuizDescription, DateCreated, TopicAnswerCorrect FROM Quizes WHERE QuizId = ?"
-            );
-            if (statement != null) {
-                statement.setInt(1, id);
-                ResultSet results = statement.executeQuery();
-                if (results != null && results.next()) {
-                    result = new Quiz(results.getInt("QuizId"), results.getString("QuizDescription"), results.getString("DateCreated"), results.getString("Topic"));
-                }
-            }
-        } catch (SQLException resultsException) {
-            String error = "Database error - can't select by id from 'Quizes' table: " + resultsException.getMessage();
-            Logger.log(error);
-        }
-        return result;
-    }
-
-    public static String insert(Quiz itemToSave) {
-        try {
-            PreparedStatement statement = DatabaseConnection.newStatement(
-                    "INSERT INTO Quizes (QuizId, QuizDescription, DateCreated, TopicAnswerCorrect) VALUES (?, ?, ?, ?)"
-            );
-            statement.setInt(1, itemToSave.getQuizId());
-            statement.setString(2, itemToSave.getQuizDescription());
-            statement.setString(3, itemToSave.getDateCreated());
-            statement.setString(4, itemToSave.getTopic());
-            statement.executeUpdate();
-            return "OK";
-        } catch (SQLException resultsException) {
-            String error = "Database error - can't insert into 'Quizes' table: " + resultsException.getMessage();
-
-            Logger.log(error);
-            return error;
-        }
-    }
-
-    public static String update(Quiz itemToSave) {
-        try {
-            PreparedStatement statement = DatabaseConnection.newStatement(
-                    "UPDATE Quizes SET QuizDescription = ?, DateCreated = ?, Topic = ? WHERE QuizId = ?"
-            );
-            statement.setString(1, itemToSave.getQuizDescription());
-            statement.setString(2, itemToSave.getDateCreated());
-            statement.setString(3, itemToSave.getTopic());
-            statement.setInt(5, itemToSave.getQuizId());
-            statement.executeUpdate();
-            return "OK";
-        } catch (SQLException resultsException) {
-            String error = "Database error - can't update 'Quizes' table: " + resultsException.getMessage();
-
-            Logger.log(error);
-            return error;
-        }
-    }
-
-    public static String deleteById(int id) {
-        try {
-            PreparedStatement statement = DatabaseConnection.newStatement(
-                    "DELETE FROM Quizes WHERE QuizId = ?"
-            );
-            statement.setInt(1, id);
-            statement.executeUpdate();
-            return "OK";
-        } catch (SQLException resultsException) {
-            String error = "Database error - can't delete by id from 'Quizes' table: " + resultsException.getMessage();
-
-            Logger.log(error);
-            return error;
-        }
-    }
+   
 
 }

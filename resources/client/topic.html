@@ -50,6 +50,54 @@
         <script src="/client/js/querystring.js"></script>
         <link href="/client/css/bootstrap.min.css" rel="stylesheet">
         <script src="/client/js/topic.js"></script>
+
+        <script>
+
+            function pageLoad() {
+                getQuizList();
+            }
+
+            function getQuizByTopic() {
+                console.log("Invoked getQuizList() ");
+                var topic = sessionStorage.getItem('topic');
+
+                $.ajax({
+                    type: "GET",
+                    url: "/quiz/byTopic",
+                    data:  {'topic' : topic},
+                    success: response => {
+                        if (response.toString().startsWith('Error:')) {
+                            alert(response);
+                        } else {
+                            formatQuizList(response);
+                        }
+                    }
+                });
+            }
+
+            function formatQuizList(data) {
+                console.log(data);
+                let dataHTML = '<tr><td>Quiz Description</td>' +
+                    '<td>Date Created</td>' +
+                    '<td>Topic</td> + < /tr>';
+                for (let item of data) {
+                    dataHTML += `<tr><td>${item.quizDescription}</td>` +
+                        `<td>${item.dateCreated}</td>` +
+                        `<td>${item.topic}</td>` +
+                        `<td>  <button class="trackQuiz btn btn-primary"  data-quizID="${item.quizId}" >Do Quiz</button> </td></tr>`;
+                }
+                $('#quizList').html(dataHTML);
+                $(".trackQuiz").click(event => {
+
+                    const quizId = $(event.target).attr('data-quizId');  //from the click event, get the quizID
+                    sessionStorage.setItem("quizId", quizId);
+                    window.open("quiz.html", "_self");
+                });
+            }
+
+
+
+        </script>
     </head>
     <body onload="pageLoad()">
     <ul>

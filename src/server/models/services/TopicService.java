@@ -1,94 +1,125 @@
 package server.models.services;
+
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Topic;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 public class TopicService {
+
     public static String selectAllInto(List<Topic> targetList) {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT TopicId, QuestionId, AnswerCorrect FROM Topic"
+                    "SELECT Topic, TopicDescription FROM Topics"
             );
             if (statement != null) {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Topic(results.getInt("TopicId"), results.getInt("QuestionId"), results.getInt("AnswerCorrect")));
+                        targetList.add(new Topic(results.getString("Topic"), results.getString("TopicDescription")));
+
+
                     }
                 }
             }
         } catch (SQLException resultsException) {
-            String error = "Database error - can't select all from 'Topic' table: " + resultsException.getMessage();
+            String error = "Database error - can't select all from 'Topics' table: " + resultsException.getMessage();
+
             Logger.log(error);
             return error;
         }
         return "OK";
     }
+
     public static Topic selectById(int id) {
         Topic result = null;
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT TopicId, QuestionId, AnswerCorrect FROM Topic WHERE TopicId = ?"
+                    "SELECT Topic, TopicDescription FROM Topics WHERE Topic = ?"
             );
             if (statement != null) {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new Topic(results.getInt("TopicId"), results.getInt("QuestionId"), results.getInt("AnswerCorrect"));
+                    result = new Topic(results.getString("Topic"), results.getString("TopicDescription"));
+
+
                 }
             }
         } catch (SQLException resultsException) {
-            String error = "Database error - can't select by id from 'Topic' table: " + resultsException.getMessage();
+            String error = "Database error - can't select by id from 'Topics' table: " + resultsException.getMessage();
+
             Logger.log(error);
         }
         return result;
     }
+
     public static String insert(Topic itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "INSERT INTO Topic (TopicId, QuestionId, AnswerCorrect) VALUES (?, ?, ?)"
+                    "INSERT INTO Topics (Topic, TopicDescription) VALUES (?, ?)"
             );
-            statement.setInt(1, itemToSave.getTopicId());
-            statement.setInt(2, itemToSave.getQuestionId());
-            statement.setInt(3, itemToSave.getAnswerCorrect());
+            statement.setString(1, itemToSave.getTopic());
+            statement.setString(2, itemToSave.getTopicDescription());
+
+
+
+
+
+
+
+
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
-            String error = "Database error - can't insert into 'Topic' table: " + resultsException.getMessage();
+            String error = "Database error - can't insert into 'Topics' table: " + resultsException.getMessage();
+
             Logger.log(error);
             return error;
         }
     }
+
     public static String update(Topic itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "UPDATE Topic SET QuestionId = ?, AnswerCorrect = ? WHERE TopicId = ?"
+                    "UPDATE Topics SET TopicDescription = ? WHERE Topic = ?"
             );
-            statement.setInt(1, itemToSave.getQuestionId());
-            statement.setInt(2, itemToSave.getAnswerCorrect());
-            statement.setInt(3, itemToSave.getTopicId());
+            statement.setString(1, itemToSave.getTopicDescription());
+
+
+
+
+
+
+
+
+            statement.setString(2, itemToSave.getTopic());
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
-            String error = "Database error - can't update 'Topic' table: " + resultsException.getMessage();
+            String error = "Database error - can't update 'Topics' table: " + resultsException.getMessage();
+
             Logger.log(error);
             return error;
         }
     }
+
     public static String deleteById(int id) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "DELETE FROM Topic WHERE TopicId = ?"
+                    "DELETE FROM Topics WHERE Topic = ?"
             );
             statement.setInt(1, id);
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
-            String error = "Database error - can't delete by id from 'Topic' table: " + resultsException.getMessage();
+            String error = "Database error - can't delete by id from 'Topics' table: " + resultsException.getMessage();
+
             Logger.log(error);
             return error;
         }
