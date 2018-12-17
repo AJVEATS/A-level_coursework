@@ -2,6 +2,7 @@ package server.models.services;
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Quiz;
+import server.models.Topic;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,19 +27,21 @@ public class QuizService {
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select all from 'Quizzes' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
         return "OK";
     }
+
+
     public static String selectByTopic(List<Quiz> targetList, String topic) {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT QuizId, QuizDescription, DateCreated, Topic FROM Quizzes Where Topic = ?"
+                    "SELECT QuizId, QuizDescription, DateCreated, Topic FROM Quizzes WHERE Topic = ? "
             );
             if (statement != null) {
+                statement.setString(1, topic);
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
@@ -47,13 +50,13 @@ public class QuizService {
                 }
             }
         } catch (SQLException resultsException) {
-            String error = "Database error - can't select all from 'Quizzes' table: " + resultsException.getMessage();
-
+            String error = "Database error - can't select quizzes by topic from DB: " + resultsException.getMessage();
             Logger.log(error);
             return error;
         }
         return "OK";
     }
+
 
    
 
