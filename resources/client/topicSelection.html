@@ -7,6 +7,10 @@
 
            font-color: dimgray;
             font-size: larger;
+            border-style: solid;
+            border-radius: 12px;
+            border-color: dimgray;
+            padding: 5px;
         }
         topic {
             float: left;
@@ -48,7 +52,6 @@
     <script src="/client/js/js.cookie.min.js"></script>
     <script src="/client/js/querystring.js"></script>
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">
-
     <script>
         function pageLoad() {
             getTopicList();
@@ -75,8 +78,8 @@
             console.log(data);
             let dataHTML ="";
             for (let item of data) {
-                dataHTML += `<div class="topic"><span class="topicTitle"> ${item.topic}</span> <br>`+
-                    `${item.topicDescription}  <button class="goToTopic btn btn-primary" data-topic="${item.topic}"  >Go to Quizzes</button></div>`;
+                dataHTML += `<div class="topic"><span class="topicTitle"> ${item.topic}</span> <br>` + `<br></br>` +
+                    `${item.topicDescription} <button class="goToTopic btn btn-primary" data-topic="${item.topic}">Go to Quizzes</button></div>` + `<br></br>`;
             }
             $('#topicList').html(dataHTML);
 
