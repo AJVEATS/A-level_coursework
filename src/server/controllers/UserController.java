@@ -73,11 +73,10 @@ public class UserController {
         }
     }
 
-    public static String validateSessionCookie(Cookie sessionCookie) {
+    static String validateSessionCookie(Cookie sessionCookie) {
         //checks if session ID belongs to any user
         if (sessionCookie != null) {
             String uuid = sessionCookie.getValue();
-
             UserService.selectAllInto(User.users);
             for (User u : User.users) {
 

@@ -59,5 +59,7 @@ function checkLogin() {
     }
 }
 function userLogout(){
-    alert("You have been logged out.")
+    Cookies.set("sessionToken", null);
+    alert("You have been logged out.");
+
 }
