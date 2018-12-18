@@ -1,4 +1,5 @@
 package server.controllers;
+import server.Logger;
 import server.models.User;
 import server.models.services.UserService;
 import javax.ws.rs.*;
@@ -71,4 +72,24 @@ public class UserController {
             return currentUser;
         }
     }
+
+    public static String validateSessionCookie(Cookie sessionCookie) {
+        //checks if session ID belongs to any user
+        if (sessionCookie != null) {
+            String uuid = sessionCookie.getValue();
+
+            UserService.selectAllInto(User.users);
+            for (User u : User.users) {
+
+                if (u.getSessionToken() != null && u.getSessionToken().equals(uuid)) {
+                    Logger.log("Valid session token received.");
+                    return "Valid";
+                }
+
+            }
+        }
+        return "Not valid";
+    }
+
+
 }

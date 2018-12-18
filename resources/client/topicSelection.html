@@ -67,6 +67,7 @@
                 success: response => {
                     if (response.toString().startsWith('Error:')) {
                         alert(response);
+                        window.open("login.html", "_self");
                     } else {
                         formatTopicList(response);
                     }

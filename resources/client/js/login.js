@@ -13,25 +13,25 @@ function postUserLogin() {
                 alert(response);
             } else {
                 Cookies.set("sessionToken", response);
-                window.open("index.html", "_self");
+                window.open("topicSelection.html", "_self");
             }
         }
     });
 }
-function resetNewUserForm() {
+function postUserNew() {
     const newUserForm = $('#newUserForm');
     newUserForm.submit(event => {
         event.preventDefault();
         $.ajax({
-            url: '/user/new',
             type: 'POST',
+            url: '/user/new',
             data: newUserForm.serialize(),
             success: response => {
                 if (response.startsWith('Error:')) {
                     alert(response);
                 } else {
                     Cookies.set("sessionToken", response);
-                    window.location.href = "/client/index.html";
+                    window.open("topicSelection.html", "_self");
                 }
             }
         });
