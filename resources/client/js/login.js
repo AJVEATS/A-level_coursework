@@ -58,3 +58,6 @@ function checkLogin() {
         }
     }
 }
+function userLogout(){
+    alert("You have been logged out.")
+}
