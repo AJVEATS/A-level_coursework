@@ -1,45 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<style>
-    topicOneDescription{
-        float: left;
-        width: 75%;
-        text-align: left;
-        padding: 2px;
-        border-style: solid;
-        border-color: dimgray;
-        border-radius: 12px;
-        height: 825px;
-    }
-    topicOneRecentScores {
-        float: left;
-        width: 25%;
-        text-align: left;
-        padding: 2px;
-        border-style: solid;
-        border-color: dimgray;
-        border-radius: 12px;
-        height: 825px;
-    }
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-    }
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        float: right;
-    }
-    li a:hover {
-        background-color: #111;
-    }
-</style>
 <head>
     <title>topicOne</title>
     <link rel="shortcut icon" href="/client/favicon.ico" type="image/x-icon">
@@ -49,50 +9,8 @@
     <script src="/client/js/js.cookie.min.js"></script>
     <script src="/client/js/querystring.js"></script>
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-
-        function pageLoad(){
-            getQuizQuestions();
-        }
-
-        function getQuizQuestions(){
-            console.log("Invoked getQuizQuestions()");
-            var quizId = sessionStorage.getItem('quizId');
-
-            $.ajax({
-                type: "GET",
-                url: "/quizquestion/list",
-                data:  {'quizId' : quizId},
-                success: response => {
-                    if (response.toString().startsWith('Error:')){
-                        alert(response);
-                    } else {
-                        formatQuizQuestionList(response);
-                    }
-                }
-            });
-        }
-
-        function formatQuizQuestionList(data){
-            console.log(data);
-            let dataHTML = '<tr><td>Question</td>' +
-                    '<td>AnswerA</td>' +
-                    '<td>AnswerB</td>' +
-                    '<td>AnswerC</td>' +
-                    '<td>AnswerD</td>' +
-                    '</tr>';
-            for (let item of data){
-                dataHTML += `<tr>\`<td>${item.question}</td>\` +
-                <td>${item.answerA}</td>` +
-                    `<td>${item.answerB}</td>` +
-                    `<td>${item.answerC}</td>` +
-                    `<td>${item.answerD}</td>`;
-            }
-            $('#QuestionList').html(dataHTML);
-        }
-
-    </script>
-</head>
+    <script src="/client/js/quiz.js"></script></head>
+    <link href = "css/styleSheet.css" rel="stylesheet">
 <body onload="pageLoad()">
 <ul>
     <li><a class="active" href="login.html">Logout</a></li>
