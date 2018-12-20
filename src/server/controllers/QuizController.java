@@ -17,11 +17,11 @@ import javax.ws.rs.core.MediaType;
 public class QuizController {
 
     @GET
-    @Path("byTopic")
+    @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public String quizByTopic(@QueryParam("topic") String topic) {
 
-        Logger.log("/quiz/byTopic - Getting list of quizzes by topic from database");
+        Logger.log("/quiz/list - Getting quiz list by topic " + topic + "from database");
 
         String status = QuizService.selectByTopic(Quiz.quizzes, topic);
 

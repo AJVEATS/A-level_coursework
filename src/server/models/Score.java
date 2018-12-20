@@ -2,13 +2,13 @@ package server.models;
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
-public class Scores {
+public class Score {
     private int scoreId;
     private int userId;
     private double quizId;
     private int score;
 
-    public Scores(int scoreId, int userId, double quizId, int score) {
+    public Score(int scoreId, int userId, double quizId, int score) {
         this.scoreId = scoreId;
         this.userId = userId;
         this.quizId = quizId;
@@ -50,11 +50,11 @@ public class Scores {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    public static ArrayList<Scores> scoress = new ArrayList<>();
+    public static ArrayList<Score> scoress = new ArrayList<>();
 
     public static int nextId() {
         int id = 0;
-        for (Scores s: scoress) {
+        for (Score s: scoress) {
             if (s.getScoreId() > id) {
                 id = s.getScoreId();
             }

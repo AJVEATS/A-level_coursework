@@ -2,7 +2,7 @@ package server.models;
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
-public class Questions {
+public class Question {
     private int questionId;
     private String topic;
     private String question;
@@ -12,7 +12,7 @@ public class Questions {
     private String answerD;
     private String answerCorrect;
 
-    public Questions(int questionId, String topic, String question, String answerA, String answerB, String answerC, String answerD, String answerCorrect) {
+    public Question(int questionId, String topic, String question, String answerA, String answerB, String answerC, String answerD, String answerCorrect) {
         this.questionId = questionId;
         this.topic = topic;
         this.question = question;
@@ -23,7 +23,7 @@ public class Questions {
         this.answerCorrect = answerCorrect;
     }
 
-    public Questions(int questionId, String question, String answerA, String answerB, String answerC, String answerD) {
+    public Question(int questionId, String question, String answerA, String answerB, String answerC, String answerD) {
 
     }
 
@@ -91,11 +91,11 @@ public class Questions {
         this.answerCorrect = answerCorrect;
     }
 
-    public static ArrayList<Questions> questionss = new ArrayList<>();
+    public static ArrayList<Question> questions = new ArrayList<>();
 
     public static int nextId() {
         int id = 0;
-        for (Questions q: questionss) {
+        for (Question q: questions) {
             if (q.getQuestionId() > id) {
                 id = q.getQuestionId();
             }

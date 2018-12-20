@@ -52,26 +52,28 @@
     <script>
 
         function pageLoad(){
-            getQuestionByTopic();
+            getQuizQuestions();
         }
 
-        function getQuestionByTopic(){
-            console.log("Invoked getQuestionList()");
+        function getQuizQuestions(){
+            console.log("Invoked getQuizQuestions()");
+            var quizId = sessionStorage.getItem('quizId');
 
             $.ajax({
                 type: "GET",
-                url: "/questions/byTopic",
+                url: "/quizquestion/list",
+                data:  {'quizId' : quizId},
                 success: response => {
                     if (response.toString().startsWith('Error:')){
                         alert(response);
                     } else {
-                        formatQuestionList(response);
+                        formatQuizQuestionList(response);
                     }
                 }
             });
         }
 
-        function formatQuestionList(data){
+        function formatQuizQuestionList(data){
             console.log(data);
             let dataHTML = '<tr><td>Question</td>' +
                     '<td>AnswerA</td>' +

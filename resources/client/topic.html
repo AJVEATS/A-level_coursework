@@ -61,7 +61,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "/quiz/byTopic",
+                    url: "/quiz/list",
                     data:  {'topic' : topic},
                     success: response => {
                         if (response.toString().startsWith('Error:')) {

@@ -1,15 +1,16 @@
 package server.models.services;
 import server.Logger;
 import server.DatabaseConnection;
-import server.models.Questions;
+import server.models.Question;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class QuestionsService {
+public class QuestionService {
 
-    public static String selectAllInto(List<Questions> targetList) {
+    public static String selectAllInto(List<Question> targetList) {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -19,7 +20,7 @@ public class QuestionsService {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Questions(results.getInt("QuestionId"), results.getString("Topic"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("AnswerCorrect")));
+                        targetList.add(new Question(results.getInt("QuestionId"), results.getString("Topic"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("AnswerCorrect")));
 
 
                     }
@@ -34,8 +35,8 @@ public class QuestionsService {
         return "OK";
     }
 
-    public static Questions selectById(int id) {
-        Questions result = null;
+    public static Question selectById(int id) {
+        Question result = null;
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
                     "SELECT QuestionId, Topic, Question, AnswerA, AnswerB, AnswerC, AnswerD, AnswerCorrect FROM Questions WHERE QuestionId = ?"
@@ -44,7 +45,7 @@ public class QuestionsService {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new Questions(results.getInt("QuestionId"), results.getString("Topic"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("AnswerCorrect"));
+                    result = new Question(results.getInt("QuestionId"), results.getString("Topic"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("AnswerCorrect"));
                 }
             }
         } catch (SQLException resultsException) {
@@ -54,7 +55,7 @@ public class QuestionsService {
         return result;
     }
 
-    public static String insert(Questions itemToSave) {
+    public static String insert(Question itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
                     "INSERT INTO Questions (QuestionId, Topic, Question, AnswerA, AnswerB, AnswerC, AnswerD, AnswerCorrect) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
@@ -76,7 +77,7 @@ public class QuestionsService {
         }
     }
 
-    public static String update(Questions itemToSave) {
+    public static String update(Question itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
                     "UPDATE Questions SET Topic = ?, Question = ?, AnswerA = ?, AnswerB = ?, AnswerC = ?, AnswerD = ?, AnswerCorrect = ? WHERE QuestionId = ?"
@@ -113,7 +114,7 @@ public class QuestionsService {
         }
     }
 
-    public static String selectByTopic(List<Questions> targetList, String topic) {
+    public static String selectByTopic(List<Question> targetList, String topic) {
         targetList.clear();
         try{
             PreparedStatement statement = DatabaseConnection.newStatement(
@@ -123,7 +124,7 @@ public class QuestionsService {
                 statement.setString(1, topic);
                 ResultSet results = statement.executeQuery();
                 while (results.next()){
-                    targetList.add(new Questions(results.getInt("QuestionId"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD")));
+                    targetList.add(new Question(results.getInt("QuestionId"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD")));
                 }
             }
         } catch ( SQLException resultsException) {

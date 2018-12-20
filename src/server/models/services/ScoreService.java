@@ -1,60 +1,61 @@
 package server.models.services;
 import server.Logger;
 import server.DatabaseConnection;
-import server.models.Scores;
+import server.models.Score;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ScoresService {
+public class ScoreService {
 
-    public static String selectAllInto(List<Scores> targetList) {
+    public static String selectAllInto(List<Score> targetList) {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT ScoreId, UserId, QuizId, ScoreId FROM Scores"
+                    "SELECT ScoreId, UserId, QuizId, ScoreId FROM Score"
             );
             if (statement != null) {
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     while (results.next()) {
-                        targetList.add(new Scores(results.getInt("ScoreId"), results.getInt("UserId"), results.getDouble("QuizId"), results.getInt("ScoreId")));
+                        targetList.add(new Score(results.getInt("ScoreId"), results.getInt("UserId"), results.getDouble("QuizId"), results.getInt("ScoreId")));
                     }
                 }
             }
         } catch (SQLException resultsException) {
-            String error = "Database error - can't select all from 'Scores' table: " + resultsException.getMessage();
+            String error = "Database error - can't select all from 'Score' table: " + resultsException.getMessage();
             Logger.log(error);
             return error;
         }
         return "OK";
     }
 
-    public static Scores selectById(int id) {
-        Scores result = null;
+    public static Score selectById(int id) {
+        Score result = null;
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "SELECT ScoreId, UserId, QuizId, ScoreId FROM Scores WHERE ScoreId = ?"
+                    "SELECT ScoreId, UserId, QuizId, ScoreId FROM Score WHERE ScoreId = ?"
             );
             if (statement != null) {
                 statement.setInt(1, id);
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
-                    result = new Scores(results.getInt("ScoreId"), results.getInt("UserId"), results.getDouble("QuizId"), results.getInt("ScoreId"));
+                    result = new Score(results.getInt("ScoreId"), results.getInt("UserId"), results.getDouble("QuizId"), results.getInt("ScoreId"));
                 }
             }
         } catch (SQLException resultsException) {
-            String error = "Database error - can't select by id from 'Scores' table: " + resultsException.getMessage();
+            String error = "Database error - can't select by id from 'Score' table: " + resultsException.getMessage();
             Logger.log(error);
         }
         return result;
     }
 
-    public static String insert(Scores itemToSave) {
+    public static String insert(Score itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "INSERT INTO Scores (ScoreId, UserId, QuizId, ScoreId) VALUES (?, ?, ?, ?)"
+                    "INSERT INTO Score (ScoreId, UserId, QuizId, ScoreId) VALUES (?, ?, ?, ?)"
             );
             statement.setInt(1, itemToSave.getScoreId());
             statement.setInt(2, itemToSave.getUserId());
@@ -63,16 +64,16 @@ public class ScoresService {
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
-            String error = "Database error - can't insert into 'Scores' table: " + resultsException.getMessage();
+            String error = "Database error - can't insert into 'Score' table: " + resultsException.getMessage();
             Logger.log(error);
             return error;
         }
     }
 
-    public static String update(Scores itemToSave) {
+    public static String update(Score itemToSave) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "UPDATE Scores SET UserId = ?, QuizId = ?, ScoreId = ? WHERE ScoreId = ?"
+                    "UPDATE Score SET UserId = ?, QuizId = ?, ScoreId = ? WHERE ScoreId = ?"
             );
             statement.setInt(1, itemToSave.getUserId());
             statement.setDouble(2, itemToSave.getQuizId());
@@ -81,7 +82,7 @@ public class ScoresService {
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
-            String error = "Database error - can't update 'Scores' table: " + resultsException.getMessage();
+            String error = "Database error - can't update 'Score' table: " + resultsException.getMessage();
             Logger.log(error);
             return error;
         }
@@ -89,13 +90,13 @@ public class ScoresService {
     public static String deleteById(int id) {
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
-                    "DELETE FROM Scores WHERE ScoreId = ?"
+                    "DELETE FROM Score WHERE ScoreId = ?"
             );
             statement.setInt(1, id);
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
-            String error = "Database error - can't delete by id from 'Scores' table: " + resultsException.getMessage();
+            String error = "Database error - can't delete by id from 'Score' table: " + resultsException.getMessage();
             Logger.log(error);
             return error;
         }

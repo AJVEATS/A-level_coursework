@@ -2,11 +2,11 @@ package server.models;
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
-public class QuizQuestions {
+public class QuizQuestion {
     private int quizId;
-    private String questionId;
+    private int questionId;
 
-    public QuizQuestions(int quizId, String questionId) {
+    public QuizQuestion(int quizId, int questionId) {
         this.quizId = quizId;
         this.questionId = questionId;
     }
@@ -19,19 +19,19 @@ public class QuizQuestions {
         this.quizId = quizId;
     }
 
-    public String getQuestionId() {
+    public int getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(String questionId) {
+    public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
 
-    public static ArrayList<QuizQuestions> quizquestionss = new ArrayList<>();
+    public static ArrayList<QuizQuestion> quizquestions = new ArrayList<>();
 
     public static int nextId() {
         int id = 0;
-        for (QuizQuestions q: quizquestionss) {
+        for (QuizQuestion q: quizquestions) {
             if (q.getQuizId() > id) {
                 id = q.getQuizId();
             }
