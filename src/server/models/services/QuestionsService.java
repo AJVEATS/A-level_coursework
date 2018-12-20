@@ -113,4 +113,24 @@ public class QuestionsService {
         }
     }
 
+    public static String selectByTopic(List<Questions> targetList, String topic) {
+        targetList.clear();
+        try{
+            PreparedStatement statement = DatabaseConnection.newStatement(
+                    " SELECT Question, AnswerA, AnswerB, AnswerC, AnswerD FROM Questions WHERE Topic = ?"
+            );
+            if (statement!= null) {
+                statement.setString(1, topic);
+                ResultSet results = statement.executeQuery();
+                while (results.next()){
+                    targetList.add(new Questions(results.getInt("QuestionId"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD")));
+                }
+            }
+        } catch ( SQLException resultsException) {
+            String error = "Database error  can't select questions by topic from DB: " + resultsException.getMessage();
+            Logger.log(error);
+            return error;
+        }
+        return "OK";
+    }
 }

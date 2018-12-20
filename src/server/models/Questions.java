@@ -23,6 +23,10 @@ public class Questions {
         this.answerCorrect = answerCorrect;
     }
 
+    public Questions(int questionId, String question, String answerA, String answerB, String answerC, String answerD) {
+
+    }
+
     public int getQuestionId() {
         return questionId;
     }

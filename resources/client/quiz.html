@@ -49,7 +49,47 @@
     <script src="/client/js/js.cookie.min.js"></script>
     <script src="/client/js/querystring.js"></script>
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/client/js/topic.js"></script>
+    <script>
+
+        function pageLoad(){
+            getQuestionByTopic();
+        }
+
+        function getQuestionByTopic(){
+            console.log("Invoked getQuestionList()");
+
+            $.ajax({
+                type: "GET",
+                url: "/questions/byTopic",
+                success: response => {
+                    if (response.toString().startsWith('Error:')){
+                        alert(response);
+                    } else {
+                        formatQuestionList(response);
+                    }
+                }
+            });
+        }
+
+        function formatQuestionList(data){
+            console.log(data);
+            let dataHTML = '<tr><td>Question</td>' +
+                    '<td>AnswerA</td>' +
+                    '<td>AnswerB</td>' +
+                    '<td>AnswerC</td>' +
+                    '<td>AnswerD</td>' +
+                    '</tr>';
+            for (let item of data){
+                dataHTML += `<tr>\`<td>${item.question}</td>\` +
+                <td>${item.answerA}</td>` +
+                    `<td>${item.answerB}</td>` +
+                    `<td>${item.answerC}</td>` +
+                    `<td>${item.answerD}</td>`;
+            }
+            $('#QuestionList').html(dataHTML);
+        }
+
+    </script>
 </head>
 <body onload="pageLoad()">
 <ul>
@@ -60,6 +100,7 @@
     <p><font color="white">A-level Computer Science Coursework</font></p>
 </ul>
 
+<div id="QuestionList"></div>
 
 </body>
 </html>
