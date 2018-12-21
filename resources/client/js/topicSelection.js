@@ -24,8 +24,8 @@ function formatTopicList(data) {
     console.log(data);
     let dataHTML ="";
     for (let item of data) {
-        dataHTML += `<div class="topic"><span class="topicTitle"> ${item.topic}</span> <br>` + `<br></br>` +
-            `${item.topicDescription} <button class="goToTopic btn btn-primary" data-topic="${item.topic}">Go to Quizzes</button></div>` + `<br></br>`;
+        dataHTML += `<div class="topic"><span class="topicTitle"> ${item.topic}</span> <br>` + `<br>` +
+            `${item.topicDescription} <button class="goToTopic btn btn-primary" data-topic="${item.topic}">Go to Quizzes</button></div>` + `<br>`;
     }
     $('#topicList').html(dataHTML);
 

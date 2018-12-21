@@ -27,7 +27,7 @@ function formatQuizList(data) {
         '<td>Date Created</td> + < /tr>';
     for (let item of data) {
         dataHTML += `<tr>\`<td>${item.topic}</td>\` +
-                        <td>${item.quizDescription}</td>` +
+             <td>${item.quizDescription}</td>` +
             `<td>${item.dateCreated}</td>` +
             `<td>  <button class="trackQuiz btn btn-primary"  data-quizID="${item.quizId}" >Take the Test</button> </td></tr>`;
     }
