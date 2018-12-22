@@ -23,25 +23,23 @@ function getQuizQuestions(){
 function formatQuizQuestionList(data){
     console.log(data);
     let dataHTML = '<tr><td>Question</td>' +
-        '<td>|      AnswerA      |</td>' +
-        '<td>|      AnswerB      |</td>' +
-        '<td>|      AnswerC      |</td>' +
-        '<td>|      AnswerD      |</td>' +
+        '<td>|   Answer A   |</td>' +
+        '<td>|   Answer B   |</td>' +
+        '<td>|   Answer C   |</td>' +
+        '<td>|   Answer D   |</td>' +
+        '<td>|   Your Answer   |</td>' +
         '</tr>';
     for (let item of data){
-        dataHTML += `<tr>\`<td>${item.question}</td>\` +
+        dataHTML += `<tr>\<td>${item.question}</td>\` +
              <td>${item.answerA}</td>` +
             `<td>${item.answerB}</td>` +
             `<td>${item.answerC}</td>` +
             `<td>${item.answerD}</td>` +
-            '<td><button class="btn btn-lg btn-dark" onclick=\'checkUserAnswer();\'>A</button></td>' +
-            '<td><button class="btn btn-lg btn-dark" onclick=\'checkUserAnswer();\'>B</button></td>' +
-            '<td><button class="btn btn-lg btn-dark" onclick=\'checkUserAnswer();\'>C</button></td>' +
-            '<td><button class="btn btn-lg btn-dark" onclick=\'checkUserAnswer();\'>D</button></td>';
+            `<td><select id = "userAnswer" onchange="checkUserAnswer()"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select></td>`;
     }
     $('#QuestionList').html(dataHTML);
 }
 
 function checkUserAnswer() {
-
+    var usersAnswer = document.getElementById("userAnswer");
 }
