@@ -41,5 +41,5 @@ function formatQuizQuestionList(data){
 }
 
 function checkUserAnswer() {
-    var usersAnswer = document.getElementById("userAnswer");
+    let usersAnswer = document.getElementById("userAnswer");
 }
