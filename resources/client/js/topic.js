@@ -29,7 +29,7 @@ function formatQuizList(data) {
         dataHTML += `<tr>\`<td>${item.topic}</td>\` +
              <td>${item.quizDescription}</td>` +
             `<td>${item.dateCreated}</td>` +
-            `<td>  <button class="trackQuiz btn btn-primary"  data-quizID="${item.quizId}" >Take the Test</button> </td></tr>`;
+            `<td>  <button class="trackQuiz btn btn-lg btn-dark"  data-quizID="${item.quizId}" >Take the Test</button> </td></tr>`;
     }
     $('#quizList').html(dataHTML);
     $(".trackQuiz").click(event => {

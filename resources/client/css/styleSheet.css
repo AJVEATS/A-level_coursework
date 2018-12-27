@@ -95,6 +95,15 @@ recentScores{
     border-color: dimgray;
     padding: 5px;
 }
+.topicDescription{
+
+    font-color: dimgray;
+    font-size: medium;
+    border-radius: 12px;
+    border-style: none;
+    border-color: dimgray;
+    padding: 5px;
+}
 topic {
     float: left;
     width: 25%;
