@@ -1,26 +1,35 @@
-ul {
+ul{
+
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+
 }
-li a {
+li a{
+
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     float: right;
+
 }
-li a:hover {
+li a:hover{
+
     background-color: #111;
+
 }
 welcomeMessage{
+
     text-align: center;
     color: white;
+
 }
 websiteDescription{
+
     float: left;
     width: 60%;
     text-align: left;
@@ -29,8 +38,11 @@ websiteDescription{
     border-color: dimgray;
     border-radius: 12px;
     height: 825px
+
 }
+
 login{
+
     float: left;
     width: 20%;
     text-align: left;
@@ -38,9 +50,11 @@ login{
     border-style: solid;
     border-color: dimgray;
     border-radius: 12px;
-    height: 825px
+    height: 825px;
+
 }
 newUser{
+
     float: left;
     width: 20%;
     text-align: left;
@@ -48,36 +62,44 @@ newUser{
     border-style: solid;
     border-color: dimgray;
     border-radius: 12px;
-    height: 825px
+    height: 825px;
+
 }
 user{
+
     float: left;
     width: 25%;
     text-align: center;
     border-color: dimgray;
     border-radius: 12px;
     border-style: solid;
-    height: 825px
+    height: 825px;
+
 }
 topicsCompleted{
+
     float: left;
     width: 25%;
     text-align: center;
     border-color: dimgray;
     border-radius: 12px;
     border-style: solid;
-    height: 825px
+    height: 825px;
+
 }
 highestScore{
+
     float: left;
     width: 25%;
     text-align: center;
     border-color: dimgray;
     border-radius: 12px;
     border-style: solid;
-    height: 825px
+    height: 825px;
+
 }
 recentScores{
+
     float: left;
     width: 25%;
     text-align: center;
@@ -85,15 +107,17 @@ recentScores{
     border-radius: 12px;
     border-style: solid;
     height: 825px
+
 }
 .topicTitle{
 
     font-color: dimgray;
     font-size: larger;
-    border-style: solid;
+    border-style: none;
+    border-bottom: dimgray;
     border-radius: 12px;
-    border-color: dimgray;
     padding: 5px;
+
 }
 .topicDescription{
 
@@ -103,8 +127,10 @@ recentScores{
     border-style: none;
     border-color: dimgray;
     padding: 5px;
+
 }
-topic {
+topic{
+
     float: left;
     width: 25%;
     text-align: center;
@@ -116,6 +142,7 @@ topic {
 
 }
 topicOneDescription{
+
     float: left;
     width: 75%;
     text-align: left;
@@ -124,8 +151,10 @@ topicOneDescription{
     border-color: dimgray;
     border-radius: 12px;
     height: 825px;
+
 }
-topicOneRecentScores {
+topicOneRecentScores{
+
     float: left;
     width: 25%;
     text-align: left;
@@ -134,8 +163,10 @@ topicOneRecentScores {
     border-color: dimgray;
     border-radius: 12px;
     height: 825px;
+
 }
 topicOneDescription{
+
     float: left;
     width: 75%;
     text-align: left;
@@ -144,8 +175,10 @@ topicOneDescription{
     border-color: dimgray;
     border-radius: 12px;
     height: 500px;
+
 }
-topicOneRecentScores {
+topicOneRecentScores{
+
     float: left;
     width: 25%;
     text-align: left;
@@ -154,17 +187,21 @@ topicOneRecentScores {
     border-color: dimgray;
     border-radius: 12px;
     height: 500px;
+
 }
 highestScores{
+
     float: left;
     width: 50%;
     text-align: center;
     border-color: dimgray;
     border-radius: 12px;
     border-style: solid;
-    height: 825px
+    height: 825px;
+
 }
 recentScore{
+
     float: right;
     width: 50%;
     text-align: center;
@@ -172,4 +209,5 @@ recentScore{
     border-radius: 12px;
     border-style: solid;
     height: 825px
+
 }
