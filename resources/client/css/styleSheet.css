@@ -53,19 +53,8 @@ login{
     height: 825px;
 
 }
-newUser{
 
-    float: left;
-    width: 20%;
-    text-align: left;
-    padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
-    border-radius: 12px;
-    height: 825px;
-
-}
-user{
+profileOveriew{
 
     float: left;
     width: 25%;
@@ -76,39 +65,7 @@ user{
     height: 825px;
 
 }
-topicsCompleted{
 
-    float: left;
-    width: 25%;
-    text-align: center;
-    border-color: dimgray;
-    border-radius: 12px;
-    border-style: solid;
-    height: 825px;
-
-}
-highestScore{
-
-    float: left;
-    width: 25%;
-    text-align: center;
-    border-color: dimgray;
-    border-radius: 12px;
-    border-style: solid;
-    height: 825px;
-
-}
-recentScores{
-
-    float: left;
-    width: 25%;
-    text-align: center;
-    border-color: dimgray;
-    border-radius: 12px;
-    border-style: solid;
-    height: 825px
-
-}
 .topicTitle{
 
     font-color: dimgray;
@@ -165,30 +122,7 @@ topicOneRecentScores{
     height: 825px;
 
 }
-topicOneDescription{
 
-    float: left;
-    width: 75%;
-    text-align: left;
-    padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
-    border-radius: 12px;
-    height: 500px;
-
-}
-topicOneRecentScores{
-
-    float: left;
-    width: 25%;
-    text-align: left;
-    padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
-    border-radius: 12px;
-    height: 500px;
-
-}
 highestScores{
 
     float: left;
