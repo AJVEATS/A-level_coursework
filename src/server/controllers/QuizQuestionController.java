@@ -2,11 +2,11 @@ package server.controllers;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import server.Logger;
-import server.models.Question;
-import server.models.QuizQuestion;
-import server.models.services.QuestionService;
-import server.models.services.QuizQuestionService;
+import server.Logger;    // Imports from the Logger file in the server folder.
+import server.models.Question;    // Imports the Question file from the server folder.
+import server.models.QuizQuestion;    // Imports the QuizQuestion file from the server folder.
+import server.models.services.QuestionService;    // Imports the QuizService file from the service file in the server folder.
+import server.models.services.QuizQuestionService;    // Imports the QuizQuestionService file from the service file in the server folder.
 
 
 import javax.ws.rs.GET;
@@ -15,37 +15,37 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("quizquestion/")
+@Path("quizquestion/")    // The API path for the quizQuestion file
 
 public class QuizQuestionController {
 
     @GET
-    @Path("list")
+    @Path("list")    // The second part of the API path for the list function in the quizQuestion file.
     @Produces(MediaType.APPLICATION_JSON)
 
-    public String questionsByTopic(@QueryParam("quizId") int quizId) {
+    public String questionsByTopic(@QueryParam("quizId") int quizId) {    // New function declared called questionByTopic using the variable quizId and quizId from queryPara.
 
-        Logger.log("/quizquestion/list - Getting list of questions for quizID " + quizId);
-        String status = QuizQuestionService.selectAllByQuizId(QuizQuestion.quizquestions, quizId);
+        Logger.log("/quizquestion/list - Getting list of questions for quizID " + quizId);    // The console will log that it is reached and is getting all of teh questions for quizID
+        String status = QuizQuestionService.selectAllByQuizId(QuizQuestion.quizquestions, quizId);    // Status is declared as a string.
 
-        if (!status.equals("OK")) {
+        if (!status.equals("OK")) {    // If the status is ok it will run the code inside if the if statement.
             JSONObject response = new JSONObject();
-            response.put("Error: ", status);
-            return response.toString();
+            response.put("Error: ", status);    // Declares the response as an error and add the current status.
+            return response.toString();    // Returns the response that was declared above in the format of a string.
         }
 
         //now we have the quizQuestions records back we need to get the actual question referred to by the questionID
-        status = QuestionService.selectAllInto(Question.questions);
-        if (!status.equals("OK")) {
+        status = QuestionService.selectAllInto(Question.questions);    // Status is declared.
+        if (!status.equals("OK")) {    // If the status is not equal to ok it will run teh code inside of the if statement.
             JSONObject response = new JSONObject();
-            response.put("Error: ", status);
-            return response.toString();
+            response.put("Error: ", status);    // Declares the response as an error and add the current status.
+            return response.toString();    // Returns the response that was declared above in the format of a string.
         }
 
         //now we have two arrayLists one with quizID and QuestionId and another with questions including QuestionId
         //let's make a JSON array of objects
 
-        JSONArray newJSONArray = new JSONArray();
+        JSONArray newJSONArray = new JSONArray();    // A new JSONArray is declared
 
         for (QuizQuestion qq : QuizQuestion.quizquestions) {
             for (Question q : Question.questions) {
