@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">    <!–– The language variant used in the file. -->
+
 <head>
-    <title>topicOne</title>   // The title of the web page
-    <link rel="shortcut icon" href="/client/favicon.ico" type="image/x-icon">   // Link to the web page icon for use in the pages tab.
-    <script src="/client/js/jquery-3.3.1.min.js"></script>
-    <script src="/client/js/popper.min.js"></script>
-    <script src="/client/js/bootstrap.min.js"></script>
-    <script src="/client/js/js.cookie.min.js"></script>
-    <script src="/client/js/querystring.js"></script>
-    <link href="/client/css/bootstrap.min.css" rel="stylesheet">   // Link to the bootstrap library at the location.
-    <script src="/client/js/quiz.js"></script></head>    // Link to the javascript code for the web page for at the location.
-    <link href = "css/styleSheet.css" rel="stylesheet">   // Link to the CSS class at the location in the style sheet.
-<body onload="pageLoad()">   // The function pageLoad() will initiates when the web page loads.
-<ul>   // This links to the navigation bar that is determined in the stylesheet above.
-    <li><a class="active" href="login.html">Logout</a></li>   // Buttons in the navigation bar and their location
-    <li><a href="topicSelection.html">Topics</a></li>   // Same as comment above
-    <li><a href="profileOverview.html">Profile</a></li>   // Same as comment above
-    <li><a href="index.html">Home</a></li>   // Same as comment above
-    <p><font color="white">A-level Computer Science Coursework</font></p>
+
+    <title>topicOne</title>   <!–– The title of the web page. -->
+
+    <link rel="shortcut icon" href="/client/favicon.ico" type="image/x-icon">   <!–– Link to the web page icon for use in the pages tab. ––>
+    <script src="/client/js/jquery-3.3.1.min.js"></script>   <!–– Link to the jquery script in the js folder. -->
+    <script src="/client/js/popper.min.js"></script>    <!–– Link to the popper script in the js folder. -->
+    <script src="/client/js/bootstrap.min.js"></script>    <!–– Link to the bootstrap script in the js folder. -->
+    <script src="/client/js/js.cookie.min.js"></script>    <!–– Link to the cookie script in the js folder.  -->
+    <script src="/client/js/querystring.js"></script>    <!–– Link to the queryString script in the js folder.  -->
+    <link href="/client/css/bootstrap.min.css" rel="stylesheet">   <!–– Link to the bootstrap library at the location.  -->
+    <script src="/client/js/quiz.js"></script></head>    <!–– Link to the javascript code for the web page for at the location.  -->
+    <link href = "css/styleSheet.css" rel="stylesheet">   <!–– Link to the CSS class at the location in the style sheet.  -->
+
+<body onload="pageLoad()">   <!–– The function pageLoad() will initiates when the web page loads.  -->
+
+<ul>   <!–– This links to the navigation bar that is determined in the stylesheet above. -->
+    <li><a class="active" href="login.html">Logout</a></li>   <!–– Buttons in the navigation bar and their location -->
+    <li><a href="topicSelection.html">Topics</a></li>   <!–– Button that links topicSelection.html page -->
+    <li><a href="profileOverview.html">Profile</a></li>   <!–– Button that links profileOverview.html page -->
+    <li><a href="index.html">Home</a></li>   <!–– Button that links index.html page -->
+    <p><font color="white">A-level Computer Science Coursework</font></p>    <!–– The title part of the navigation bar for the website. -->
 </ul>
 
-<div id="QuestionList"></div>   // Link to the API path called QuestionsList in QuizQuestionController
+<div id="QuestionList"></div>   <!–– Link to the API path called QuestionsList in QuizQuestionController -->
 
-<button class="btn btn-lg btn-dark" onclick='checkUserAnswer();'>Check your answers.</button>   // When the button is clicked it initiates the checkUserAnswer() funtion
+<button class="btn btn-lg btn-dark" onclick='checkUserAnswer();'>Check your answers.</button>   <!–– When the button is clicked it initiates the checkUserAnswer() function -->
 
-<h2> Score: </h2>   // Where the users score is displayed
+<h2> Score: 0%</h2>   <!–– Where the users score is displayed -->
 
 </body>
 
