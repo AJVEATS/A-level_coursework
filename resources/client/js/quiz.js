@@ -41,5 +41,24 @@ function formatQuizQuestionList(data){    // New function declared called format
 }
 
 function checkUserAnswer() {    // New function declared called checkUserAnswer() which is to check if the users answer is the same as the questions correct answer.
+    console.log("Invoked checkUserAnswer()");
     let usersAnswer = document.getElementById("userAnswer");
+    let answerCorrect = "answerCorrect";
+    let correct = false;
+    let score = 0;
+    if (usersAnswer === answerCorrect){
+        correct === true;
+        console.log("Answer Correct has been triggered" + correct);
+    } else {
+        correct === false;
+        console.log("Answer Wrong has been triggered" + correct);
+
+    }
+    if (correct === true) {
+        score === score + 1;
+        alert("Answer correct. Your current score is: "  + score);
+    } else {
+        alert("Answer wrong. Your current score is: "  + score);
+        score === score;
+    }
 }
