@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ScoreService {
 
-    public static String selectAllIntoBySessionToken(List<Score> targetList) {
+    public static String selectAllInto(List<Score> targetList) {
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(
