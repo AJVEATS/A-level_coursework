@@ -1,5 +1,6 @@
 function pageLoad(){    // New function for the web page that is meant to run upon the page loading.
     getQuizQuestions();    // When the function pageLoad() it calls upon the getQuizQuestion() to run also.
+    getQuizAnswers()
 }
 
 function getQuizQuestions(){   // New function declared called getQuizQuestions(). It is called upon in the pageLoad() function.
@@ -14,7 +15,7 @@ function getQuizQuestions(){   // New function declared called getQuizQuestions(
             if (response.toString().startsWith('Error:')){    // If the response from the server starts with an error, it runs the if statement.
                 alert(response);    // If the if statement is run it returns the response from the server.
             } else {    // If the response from the server does not start with and "Error" it runs the next part of the statement.
-                formatQuizQuestionList(response);    // It runs teh function formatQuizQuestionList() function from below with the response from the server.
+                formatQuizQuestionList(response);    // It runs the function formatQuizQuestionList() function from below with the response from the server.
             }
         }
     });
@@ -40,12 +41,46 @@ function formatQuizQuestionList(data){    // New function declared called format
     $('#QuestionList').html(dataHTML);
 }
 
-function checkUserAnswer(data) {    // New function declared called checkUserAnswer() which is to check if the users answer is the same as the questions correct answer.
+function getQuizAnswers() {
+    console.log("Invoked getQuizAnswers()");
+    var quizId = sessionStorage.getItem('quizId');
+    $.ajax({
+        type: "GET",
+        url: "/quizquestion/list",
+        data:  {'quizId' : quizId},
+        success: response => {
+            if (response.toString().startsWith('Error:')){
+                alert(response);
+            } else {
+                formatQuizAnswersList(response);
+            }
+        }
+    });
+}
+
+function formatQuizAnswersList(data) {
+    console.log(data);
+    let answersHTML = '<tr><td>Question</td>' +
+        '<td>Correct Answer</td>' +
+        '</tr>';
+    for (let item of data){
+        answersHTML += `<tr>\<td>${item.question}</td>\` +
+        <td>${item.answerCorrect}</td></tr>`;
+    }
+    $('#answersList').html(answersHTML);
+}
+
+function answers(){
+    alert('#answersList');
+}
+
+
+function checkUserAnswer() {    // New function declared called checkUserAnswer() which is to check if the users answer is the same as the questions correct answer.
     console.log("Invoked checkUserAnswer()");
     let usersAnswer = document.getElementById("userAnswer");
     let answerCorrect = "B";
     let score = 0;
-    if (usersAnswer == answerCorrect){
+    if (usersAnswer === answerCorrect){
         console.log("Answer Correct has been triggered");
         score = score + 1;
         alert("Answer correct. Your current score is: "  + score);
