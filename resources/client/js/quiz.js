@@ -68,25 +68,30 @@ function formatQuizAnswersList(data) {
         <td>${item.answerCorrect}</td></tr>`;
     }
     $('#answersList').html(answersHTML);
+
 }
 
-function answers(){
-    alert('#answersList');
-}
 
 
 function checkUserAnswer() {    // New function declared called checkUserAnswer() which is to check if the users answer is the same as the questions correct answer.
     console.log("Invoked checkUserAnswer()");
     let usersAnswer = document.getElementById("userAnswer");
+    console.log(usersAnswer);
     let answerCorrect = "B";
     let score = 0;
     if (usersAnswer === answerCorrect){
         console.log("Answer Correct has been triggered");
         score = score + 1;
         alert("Answer correct. Your current score is: "  + score);
-    } else {
+    } else if(usersAnswer !== answerCorrect) {
         console.log("Answer Wrong has been triggered");
         alert("Answer wrong. Your current score is: "  + score);
     }
 
+}
+
+function displayAnswers(){
+    console.log("invoked displayAnswers()")
+    const userAnswer = $(event.target).attr('data-userAnswer');
+    sessionStorage.setItem("userAnswer", userAnswer);
 }
