@@ -1,6 +1,5 @@
 function pageLoad(){    // New function for the web page that is meant to run upon the page loading.
-    getQuizQuestions();    // When the function pageLoad() it calls upon the getQuizQuestion() to run also.
-    getQuizAnswers()
+    getQuizQuestions();   // When the function pageLoad() it calls upon the getQuizQuestion() to run also.
 }
 
 function getQuizQuestions(){   // New function declared called getQuizQuestions(). It is called upon in the pageLoad() function.
@@ -10,13 +9,14 @@ function getQuizQuestions(){   // New function declared called getQuizQuestions(
     $.ajax({
         type: "GET",
         url: "/quizquestion/list",    // The API path for the list function in the quizQuestionController.
-        data:  {'quizId' : quizId},    // The data that is being collected is quizId.
+        data:  {'quizId' : quizId},    // The data that is being collected using the quizId.
         success: response => {
             if (response.toString().startsWith('Error:')){    // If the response from the server starts with an error, it runs the if statement.
                 alert(response);    // If the if statement is run it returns the response from the server.
             } else {    // If the response from the server does not start with and "Error" it runs the next part of the statement.
                 formatQuizQuestionList(response);    // It runs the function formatQuizQuestionList() function from below with the response from the server.
             }
+
         }
     });
 }
@@ -36,42 +36,10 @@ function formatQuizQuestionList(data){    // New function declared called format
             `<td>${item.answerB}</td>` +
             `<td>${item.answerC}</td>` +
             `<td>${item.answerD}</td>` +
-            `<td><select id = "userAnswer" onchange="checkUserAnswer()"><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option></select></td>`;
+            `<td><input type="text" name="usersAnswer"  maxlength="1" i></td>`;
     }
     $('#QuestionList').html(dataHTML);
 }
-
-function getQuizAnswers() {
-    console.log("Invoked getQuizAnswers()");
-    var quizId = sessionStorage.getItem('quizId');
-    $.ajax({
-        type: "GET",
-        url: "/quizquestion/list",
-        data:  {'quizId' : quizId},
-        success: response => {
-            if (response.toString().startsWith('Error:')){
-                alert(response);
-            } else {
-                formatQuizAnswersList(response);
-            }
-        }
-    });
-}
-
-function formatQuizAnswersList(data) {
-    console.log(data);
-    let answersHTML = '<tr><td>Question</td>' +
-        '<td>Correct Answer</td>' +
-        '</tr>';
-    for (let item of data){
-        answersHTML += `<tr>\<td>${item.question}</td>\` +
-        <td>${item.answerCorrect}</td></tr>`;
-    }
-    $('#answersList').html(answersHTML);
-
-}
-
-
 
 function checkUserAnswer() {    // New function declared called checkUserAnswer() which is to check if the users answer is the same as the questions correct answer.
     console.log("Invoked checkUserAnswer()");
@@ -90,8 +58,3 @@ function checkUserAnswer() {    // New function declared called checkUserAnswer(
 
 }
 
-function displayAnswers(){
-    console.log("invoked displayAnswers()")
-    const userAnswer = $(event.target).attr('data-userAnswer');
-    sessionStorage.setItem("userAnswer", userAnswer);
-}
