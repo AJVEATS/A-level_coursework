@@ -31,3 +31,9 @@ function formatQuizAnswersList(data) {
     $('#AnswersList').html(answersHTML);
 
 }
+
+$(".setScore").click(event => {
+    const score = $(event.target).attr('data-score');  //from the click event, get the topic
+    sessionStorage.setItem("score", score);
+    window.open("topicSelection.html", "_self");
+});

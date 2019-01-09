@@ -36,7 +36,7 @@ function formatQuizQuestionList(data){    // New function declared called format
             `<td>${item.answerB}</td>` +
             `<td>${item.answerC}</td>` +
             `<td>${item.answerD}</td>` +
-            `<td><input type="text" name="usersAnswer"  maxlength="1" i></td>`;
+            `<td><input type="text" name="usersAnswer"  maxlength="1" ></td>`;
     }
     $('#QuestionList').html(dataHTML);
 }
