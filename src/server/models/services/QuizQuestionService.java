@@ -15,11 +15,11 @@ public class QuizQuestionService {    // Creating a new class called QuizQuestio
         targetList.clear();
         try {
             PreparedStatement statement = DatabaseConnection.newStatement(    // The server imports the prepared statement to interact with the database.
-                    "SELECT QuizId, QuestionId FROM QuizQuestions where QuizId = ?"    // A prepared statement for teh website to interact with the database.
+                    "SELECT QuizId, QuestionId FROM QuizQuestions where QuizId = ?"    // A prepared statement for the website to interact with the database.
             );
             if (statement != null) {    // Checks if the statement for the database is something and is not null
                 statement.setInt(1, quizId);    // The statement sets its Id to one in the quizID column
-                ResultSet results = statement.executeQuery();    // ResultSet results is now equal to teh statement in executeQuery() function.
+                ResultSet results = statement.executeQuery();    // ResultSet results is now equal to the statement in executeQuery() function.
                 if (results != null) {    // Checks if the result from the database is not null.
                     while (results.next()) {
                         targetList.add(new QuizQuestion(results.getInt("QuizId"), results.getInt("QuestionId")));
