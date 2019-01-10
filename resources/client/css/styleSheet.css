@@ -34,8 +34,7 @@ websiteDescription{
     width: 60%;
     text-align: left;
     padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
+    border: solid dimgray;
     border-radius: 12px;
     height: 825px
 
@@ -47,8 +46,7 @@ login{
     width: 20%;
     text-align: left;
     padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
+    border: solid dimgray;
     border-radius: 12px;
     height: 825px;
 
@@ -59,9 +57,8 @@ profileOveriew{
     float: left;
     width: 25%;
     text-align: center;
-    border-color: dimgray;
     border-radius: 12px;
-    border-style: solid;
+    border: solid dimgray;
     height: 825px;
 
 }
@@ -81,8 +78,7 @@ profileOveriew{
     font-color: dimgray;
     font-size: medium;
     border-radius: 12px;
-    border-style: none;
-    border-color: dimgray;
+    border: none dimgray;
     padding: 5px;
 
 }
@@ -92,8 +88,7 @@ topic{
     width: 25%;
     text-align: center;
     padding: 5px;
-    border-style: solid;
-    border-color: dimgray;
+    border: solid dimgray;
     border-radius: 12px;
     height: 500px;
 
@@ -104,8 +99,7 @@ topicOneDescription{
     width: 75%;
     text-align: left;
     padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
+    border: solid dimgray;
     border-radius: 12px;
     height: 825px;
 
@@ -116,8 +110,7 @@ topicOneRecentScores{
     width: 25%;
     text-align: left;
     padding: 2px;
-    border-style: solid;
-    border-color: dimgray;
+    border: solid dimgray;
     border-radius: 12px;
     height: 825px;
 
@@ -128,9 +121,8 @@ highestScores{
     float: left;
     width: 50%;
     text-align: center;
-    border-color: dimgray;
     border-radius: 12px;
-    border-style: solid;
+    border: solid dimgray;
     height: 825px;
 
 }
@@ -139,9 +131,8 @@ recentScore{
     float: right;
     width: 50%;
     text-align: center;
-    border-color: dimgray;
     border-radius: 12px;
-    border-style: solid;
+    border: solid dimgray;
     height: 825px
 
 }
