@@ -1,6 +1,3 @@
-function pageLoad() {
-
-}
 function postUserLogin() {
     console.log("Invoked postUserLogin() ");
     const loginForm = $('#loginForm');
