@@ -8,10 +8,7 @@ import server.models.QuizQuestion;    // Imports the QuizQuestion file from the 
 import server.models.services.QuestionService;    // Imports the QuizService file from the service file in the server folder.
 import server.models.services.QuizQuestionService;    // Imports the QuizQuestionService file from the service file in the server folder.
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("quizquestion/")    // The API path for the quizQuestion file
@@ -35,6 +32,7 @@ public class QuizQuestionController {
 
         //  now we have the quizQuestions records back we need to get the actual question referred to by the questionID
         status = QuestionService.selectAllInto(Question.questions);    // Status is declared.
+
         if (!status.equals("OK")) {    // If the status is not equal to ok it will run teh code inside of the if statement.
             JSONObject response = new JSONObject();    // A new JSONObject is declared
             response.put("Error: ", status);    // Declares the response as an error and add the current status.
@@ -57,18 +55,14 @@ public class QuizQuestionController {
                     j.put("answerC", q.getAnswerC());   // Adds the rows answerC to the JSONArray from the database.
                     j.put("answerD", q.getAnswerD());    // Adds the rows answerD to the JSONArray from the database.
                     j.put("answerCorrect", q.getAnswerCorrect());    // Adds the rows answerCorrect to the JSONArray from the database.
-
                     newJSONArray.add(j);    // It goes onto the next row of the database.
                 }
             }
         }
 
-
         Logger.log(newJSONArray.toString());
         return newJSONArray.toString();
 
-
     }
-
 
 }

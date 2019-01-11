@@ -1,18 +1,22 @@
 package server.models;
+
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Quiz {
+
     private int quizId;
     private String quizDescription;
     private String dateCreated;
     private String topic;
 
     public Quiz(int quizId, String quizDescription, String dateCreated, String topic) {
+
         this.quizId = quizId;
         this.quizDescription = quizDescription;
         this.dateCreated = dateCreated;
         this.topic = topic;
+
     }
 
     public int getQuizId() {
@@ -57,6 +61,7 @@ public class Quiz {
             }
         }
         return id + 1;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -67,5 +72,7 @@ public class Quiz {
         j.put("dateCreated", getDateCreated());
         j.put("topic", getTopic());
         return j;
+
     }
+
 }

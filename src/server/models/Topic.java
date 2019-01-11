@@ -5,10 +5,12 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Topic {
+
     private String topic;
     private String topicDescription;
 
     public Topic(String topic, String topicDescription) {
+
         this.topic = topic;
         this.topicDescription = topicDescription;
     }
@@ -38,14 +40,8 @@ public class Topic {
         JSONObject j = new JSONObject();
         j.put("topic", getTopic());
         j.put("topicDescription", getTopicDescription());
-
-
-
-
-
-
-
-
         return j;
+
     }
+
 }

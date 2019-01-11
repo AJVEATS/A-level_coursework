@@ -19,6 +19,7 @@ public class QuizController {
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
+
     public String quizByTopic(@QueryParam("topic") String topic) {
 
         Logger.log("/quiz/list - Getting quiz list by topic " + topic + "from database");
@@ -39,7 +40,6 @@ public class QuizController {
         }
 
     }
-
 
 }
 

@@ -1,8 +1,10 @@
 package server.models;
+
 import org.json.simple.JSONObject;
 import java.util.ArrayList;
 
 public class Question {
+
     private int questionId;
     private String topic;
     private String question;
@@ -13,6 +15,7 @@ public class Question {
     private String answerCorrect;
 
     public Question(int questionId, String topic, String question, String answerA, String answerB, String answerC, String answerD, String answerCorrect) {
+
         this.questionId = questionId;
         this.topic = topic;
         this.question = question;
@@ -21,6 +24,7 @@ public class Question {
         this.answerC = answerC;
         this.answerD = answerD;
         this.answerCorrect = answerCorrect;
+
     }
 
     public Question(int questionId, String question, String answerA, String answerB, String answerC, String answerD) {
@@ -101,6 +105,7 @@ public class Question {
             }
         }
         return id + 1;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -115,5 +120,7 @@ public class Question {
         j.put("answerD", getAnswerD());
         j.put("answerCorrect", getAnswerCorrect());
         return j;
+
     }
+
 }

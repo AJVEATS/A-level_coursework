@@ -27,7 +27,9 @@ public class TopicController {
         //validate sessionID
 
         if (UserController.validateSessionCookie(sessionCookie).equals("Valid")){
+
             String status = TopicService.selectAllInto(Topic.topics);
+
             if (status.equals("OK")) {
                 JSONArray topicJSONArray = new JSONArray();
                 for (Topic t : Topic.topics) {
@@ -39,11 +41,12 @@ public class TopicController {
                 JSONObject response = new JSONObject();
                 response.put("Error: ", status);
                 return response.toString();
+
             }
         } else{
+
             return "Error:  Could not validate user";
         }
-
 
     }
 
