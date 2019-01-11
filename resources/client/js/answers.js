@@ -29,11 +29,10 @@ function formatQuizAnswersList(data) {
         <td>${item.answerCorrect}</td></tr>`;
     }
     $('#AnswersList').html(answersHTML);
-
+    $(".setScore").click(event => {
+        const score = $(event.target).attr('data-score');  //from the click event, get the topic
+        sessionStorage.setItem("score", score);
+        window.open("topicSelection.html", "_self");
+        alert("Your score is: " + score)
+    });
 }
-
-$(".setScore").click(event => {
-    const score = $(event.target).attr('data-score');  //from the click event, get the topic
-    sessionStorage.setItem("score", score);
-    window.open("topicSelection.html", "_self");
-});
