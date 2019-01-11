@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <title>Answers</title>
 
@@ -13,7 +15,9 @@
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">   <!––Link to the bootstrap library at the location.-->
     <script src="/client/js/answers.js"></script></head>    <!––Link to the javascript code for the web page for at the location.-->
     <link href = "css/styleSheet.css" rel="stylesheet">
+
 </head>
+
 <body onload="pageLoad()">
 
 <ul>   <!––This links to the navigation bar that is determined in the stylesheet above.-->
@@ -30,7 +34,7 @@
 
 <form>
     Your score:<br>
-<input type="number" name="usersAnswer"  maxlength="1" >
+<input type="number" pattern="^[0-9]" min="0" max="10" name="usersAnswer"  maxlength="1" >
     <button class="active btn btn-dark" onclick="">Submit score</button>
 </form>
 
