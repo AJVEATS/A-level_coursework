@@ -28,7 +28,6 @@ function formatQuizQuestionList(data){    // New function declared called format
         '<td>Answer B</td>' +
         '<td>Answer C</td>' +
         '<td>Answer D</td>' +
-        '<td>Your Answer</td>' +
         '</tr>';
     for (let item of data){
         dataHTML += `<tr>\<td>${item.question}</td>\` +    // The name of the data that is being collected from the database.

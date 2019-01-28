@@ -47,8 +47,6 @@ public class TopicService {
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
                     result = new Topic(results.getString("Topic"), results.getString("TopicDescription"));
-
-
                 }
             }
         } catch (SQLException resultsException) {
@@ -66,19 +64,10 @@ public class TopicService {
             );
             statement.setString(1, itemToSave.getTopic());
             statement.setString(2, itemToSave.getTopicDescription());
-
-
-
-
-
-
-
-
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't insert into 'Topics' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
@@ -90,20 +79,11 @@ public class TopicService {
                     "UPDATE Topics SET TopicDescription = ? WHERE Topic = ?"
             );
             statement.setString(1, itemToSave.getTopicDescription());
-
-
-
-
-
-
-
-
             statement.setString(2, itemToSave.getTopic());
             statement.executeUpdate();
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't update 'Topics' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
@@ -119,7 +99,6 @@ public class TopicService {
             return "OK";
         } catch (SQLException resultsException) {
             String error = "Database error - can't delete by id from 'Topics' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
