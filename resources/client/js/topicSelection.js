@@ -1,6 +1,5 @@
 function pageLoad() {
     getTopicList();
-
 }
 
 function getTopicList() {
@@ -31,7 +30,6 @@ function formatTopicList(data) {
             `<br>`;
     }
     $('#topicList').html(dataHTML);
-
     $(".goToTopic").click(event => {
         const topic = $(event.target).attr('data-topic');  //from the click event, get the topic
         sessionStorage.setItem("topic", topic);

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <title>Answers</title>
-
     <link rel="shortcut icon" href="/client/favicon.ico" type="image/x-icon">   <!––Link to the web page icon for use in the pages tab.––>
     <script src="/client/js/jquery-3.3.1.min.js"></script>   <!––Link to the jquery script in the js folder.-->
     <script src="/client/js/popper.min.js"></script>    <!––Link to the popper script in the js folder.-->
@@ -16,11 +12,8 @@
     <link href="/client/css/bootstrap.min.css" rel="stylesheet">   <!––Link to the bootstrap library at the location.-->
     <script src="/client/js/answers.js"></script></head>    <!––Link to the javascript code for the web page for at the location.-->
     <link href = "css/styleSheet.css" rel="stylesheet">
-
 </head>
-
 <body onload="pageLoad()">
-
 <ul>   <!––This links to the navigation bar that is determined in the stylesheet above.-->
     <li><a class="active" href="login.html">Logout</a></li>   <!––Buttons in the navigation bar and their location.-->
     <li><a href="topicSelection.html">Topics</a></li>   <!––Button that links topicSelection.html page.-->
@@ -28,23 +21,15 @@
     <li><a href="index.html">Home</a></li>   <!––Button that links index.html page -->
     <p><font color="white">A-level Computer Science Coursework</font></p>    <!––The title part of the navigation bar for the website.-->
 </ul>
-
 <div id="AnswersList"></div>
-
 <br>
-
 <form>
     Your score:<br>
     <input type="number" pattern="^[0-9]" min="0" max="10" name="usersAnswer"  maxlength="1" >
     <button class="active btn btn-dark" onclick="">Submit score</button>
 </form>
-
 <br>
-
 <a class="active btn btn-lg btn-dark" href="quiz.html">Go back to the questions</a>
-
 <a class="active btn btn-lg btn-dark" href="topicSelection.html">Try a different topic</a>
-
 </body>
-
 </html>

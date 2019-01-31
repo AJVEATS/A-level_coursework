@@ -56,7 +56,7 @@ function checkLogin() {
     }
 }
 function userLogout(){
-    Cookies.set("sessionToken", null);
+    Cookies.remove("sessionToken");
     alert("You have been logged out.");
-
+    window.location.href = '/client/login.html';
 }

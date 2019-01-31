@@ -53,6 +53,5 @@ function checkUserAnswer() {    // New function declared called checkUserAnswer(
         console.log("Answer Wrong has been triggered");
         alert("Answer wrong. Your current score is: "  + score);
     }
-
 }
 

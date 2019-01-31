@@ -2,7 +2,6 @@ package server.models.services;
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Question;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,14 +20,11 @@ public class QuestionService {
                 if (results != null) {
                     while (results.next()) {
                         targetList.add(new Question(results.getInt("QuestionId"), results.getString("Topic"), results.getString("Question"), results.getString("AnswerA"), results.getString("AnswerB"), results.getString("AnswerC"), results.getString("AnswerD"), results.getString("AnswerCorrect")));
-
-
                     }
                 }
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select all from 'Questions' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }

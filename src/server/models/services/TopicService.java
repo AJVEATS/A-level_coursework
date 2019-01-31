@@ -1,9 +1,7 @@
 package server.models.services;
-
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Topic;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,14 +20,11 @@ public class TopicService {
                 if (results != null) {
                     while (results.next()) {
                         targetList.add(new Topic(results.getString("Topic"), results.getString("TopicDescription")));
-
-
                     }
                 }
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select all from 'Topics' table: " + resultsException.getMessage();
-
             Logger.log(error);
             return error;
         }
@@ -51,7 +46,6 @@ public class TopicService {
             }
         } catch (SQLException resultsException) {
             String error = "Database error - can't select by id from 'Topics' table: " + resultsException.getMessage();
-
             Logger.log(error);
         }
         return result;

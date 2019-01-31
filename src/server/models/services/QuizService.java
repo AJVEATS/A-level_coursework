@@ -2,8 +2,6 @@ package server.models.services;
 import server.Logger;
 import server.DatabaseConnection;
 import server.models.Quiz;
-import server.models.Topic;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +31,6 @@ public class QuizService {
         return "OK";
     }
 
-
     public static String selectByTopic(List<Quiz> targetList, String topic) {
         targetList.clear();
         try {
@@ -56,8 +53,4 @@ public class QuizService {
         }
         return "OK";
     }
-
-
-   
-
 }

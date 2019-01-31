@@ -33,7 +33,6 @@ function formatQuizList(data) {
     }
     $('#quizList').html(dataHTML);
     $(".trackQuiz").click(event => {
-
         const quizId = $(event.target).attr('data-quizId');  //from the click event, get the quizID
         sessionStorage.setItem("quizId", quizId);
         window.open("quiz.html", "_self");

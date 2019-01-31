@@ -2,14 +2,12 @@ package server.models.services;    // Imports the services package from the mode
 import server.Logger;    // Imports from the Logger file in the server folder.
 import server.DatabaseConnection;    // Imports from the DatabaseConnection file in the server folder.
 import server.models.QuizQuestion;    // Imports the QuizQuestion file from the server folder.
-
 import java.sql.PreparedStatement;    // Imports prepared statement from sql in the java folder.
 import java.sql.ResultSet;    // Imports resultSet from sql in the java folder.
 import java.sql.SQLException;    // Imports SQLException from sql in the java folder.
 import java.util.List;   // Imports List from util in the java folder.
 
 public class QuizQuestionService {    // Creating a new class called QuizQuestionService.
-
 
     public static String selectAllByQuizId(List<QuizQuestion> targetList, int quizId) {   // Imports the QuizQuestion list and QuizId for the class.
         targetList.clear();
