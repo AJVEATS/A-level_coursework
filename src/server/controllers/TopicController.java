@@ -1,11 +1,9 @@
 package server.controllers;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.Logger;
 import server.models.Topic;
 import server.models.services.TopicService;
-
 import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,15 +19,9 @@ public class TopicController {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public String quizList(@CookieParam("sessionToken") Cookie sessionCookie) {
-
-        Logger.log("/topic/list - Getting list of topics from database");
-
-        //validate sessionID
-
+        Logger.log("/topic/list - Getting list of topics from database");   //validate sessionID
         if (UserController.validateSessionCookie(sessionCookie).equals("Valid")){
-
             String status = TopicService.selectAllInto(Topic.topics);
-
             if (status.equals("OK")) {
                 JSONArray topicJSONArray = new JSONArray();
                 for (Topic t : Topic.topics) {
@@ -41,15 +33,9 @@ public class TopicController {
                 JSONObject response = new JSONObject();
                 response.put("Error: ", status);
                 return response.toString();
-
             }
         } else{
-
             return "Error:  Could not validate user";
         }
-
     }
-
 }
-
-

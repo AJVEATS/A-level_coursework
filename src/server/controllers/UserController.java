@@ -23,29 +23,22 @@ public class UserController {
 
         log("/user/new - Creating " + username);
         UserService.selectAllInto(User.users);
-
         for (User u: User.users) {
             if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
                 return "Error: Username already exists";
             }
         }
-
         if (!password1.equals(password2)) {
             return "Error: Passwords do not match.";
         }
-
         String token = UUID.randomUUID().toString();
-
         int userId = User.nextId();
-
         String success = UserService.insert(new User(userId, username, password1, token));
-
         if (success.equals("OK")) {
             return token;
         } else {
             return "Error: Can't create new user.";
         }
-
     }
 
     @POST
@@ -55,13 +48,9 @@ public class UserController {
 
     public String newMessage(@FormParam("username") String username,
                              @FormParam("password") String password ) {
-
         log("/user/login - Attempt by " + username);
-
         UserService.selectAllInto(User.users);
-
         System.out.println(User.users.size());
-
         for (User u: User.users) {
             if (u.getUserName().toLowerCase().equals(username.toLowerCase())) {
                 if (!u.getPassword().equals(password)) {
@@ -78,7 +67,6 @@ public class UserController {
             }
         }
         return "Error: Can't find user account.";
-
     }
 
     @GET
@@ -86,34 +74,24 @@ public class UserController {
     @Produces(MediaType.TEXT_PLAIN)
 
     public String getUser(@CookieParam("sessionToken") Cookie sessionCookie) {
-
         String currentUser = UserService.validateSessionCookie(sessionCookie);
-
         if (currentUser == null) {
             return "";
         } else {
             return currentUser;
         }
-
     }
-
     static String validateSessionCookie(Cookie sessionCookie) {
-
-        //checks if session ID belongs to any user
-        if (sessionCookie != null) {
+        if (sessionCookie != null) {    //checks if session ID belongs to any user
             String uuid = sessionCookie.getValue();
             UserService.selectAllInto(User.users);
             for (User u : User.users) {
-
                 if (u.getSessionToken() != null && u.getSessionToken().equals(uuid)) {
                     Logger.log("Valid session token received.");
                     return "Valid";
                 }
-
             }
         }
         return "Not valid";
-
     }
-
 }

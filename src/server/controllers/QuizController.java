@@ -1,11 +1,9 @@
 package server.controllers;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.Logger;
 import server.models.Quiz;
 import server.models.services.QuizService;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -21,11 +19,8 @@ public class QuizController {
     @Produces(MediaType.APPLICATION_JSON)
 
     public String quizByTopic(@QueryParam("topic") String topic) {
-
         Logger.log("/quiz/list - Getting quiz list by topic " + topic + "from database");
-
         String status = QuizService.selectByTopic(Quiz.quizzes, topic);
-
         if (status.equals("OK")) {
             JSONArray quizJSONArray = new JSONArray();
             for (Quiz q : Quiz.quizzes) {
@@ -38,9 +33,7 @@ public class QuizController {
             response.put("Error: ", status);
             return response.toString();
         }
-
     }
-
 }
 
 
